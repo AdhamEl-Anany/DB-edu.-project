@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعلم التفاعلي الشامل لدراسة أنظمة قواعد البيانات | Eng. Adham Hany</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Light Theme Palette */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-sidebar: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border-color: #e2e8f0;
+            --accent-primary: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #eff6ff;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --warning: #f59e0b;
+            --warning-light: #fffbeb;
+            --danger: #ef4444;
+            --danger-light: #fef2f2;
+            --purple: #8b5cf6;
+            --purple-light: #f5f3ff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme Palette */
+            --bg-primary: #0b0f19;
+            --bg-secondary: #111827;
+            --bg-card: #1f2937;
+            --bg-sidebar: #111827;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border-color: #374151;
+            --accent-primary: #3b82f6;
+            --accent-hover: #60a5fa;
+            --accent-light: rgba(59, 130, 246, 0.15);
+            --success: #10b981;
+            --success-light: rgba(16, 185, 129, 0.15);
+            --warning: #f59e0b;
+            --warning-light: rgba(245, 158, 11, 0.15);
+            --danger: #ef4444;
+            --danger-light: rgba(239, 68, 68, 0.15);
+            --purple: #8b5cf6;
+            --purple-light: rgba(139, 92, 246, 0.15);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+            --shadow-lg: 0 10px 25px -5px rgb(0 0 0 / 0.5);
+            --shadow-glow: 0 0 25px rgba(59, 130, 246, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* Top Reading Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Header Navigation */
+        .app-header {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        [data-theme="light"] .app-header {
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--purple));
+            color: #fff;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .brand-text h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-text span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            width: 280px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-icon:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .developer-badge {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Layout Grid */
+        .app-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: calc(100vh - 65px);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background-color: var(--bg-sidebar);
+            border-left: 1px solid var(--border-color);
+            padding: 1.5rem 1rem;
+            position: sticky;
+            top: 65px;
+            height: calc(100vh - 65px);
+            overflow-y: auto;
+        }
+
+        .sidebar-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 800;
+            margin: 1.2rem 0.8rem 0.5rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.7rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            margin-bottom: 0.2rem;
+        }
+
+        .nav-item a:hover, .nav-item.active a {
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+        }
+
+        .nav-item a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Hero Banner */
+        .hero-card {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.95)), url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius-xl);
+            padding: 3rem 2.5rem;
+            color: #fff;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), transparent);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background-color: var(--accent-primary);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            max-width: 800px;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        .stat-item h4 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-hover);
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        /* Card System */
+        .topic-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .topic-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-primary);
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .topic-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .topic-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .topic-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .english-term {
+            font-family: 'Inter', sans-serif;
+            direction: ltr;
+            display: inline-block;
+            color: var(--accent-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            background-color: var(--accent-light);
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-sm);
+            margin-right: 0.5rem;
+        }
+
+        .core-idea-box {
+            background-color: var(--accent-light);
+            border-right: 4px solid var(--accent-primary);
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .core-idea-box h5 {
+            color: var(--accent-primary);
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            border: 1px solid transparent;
+        }
+
+        .callout-icon {
+            font-size: 1.4rem;
+            margin-top: 0.1rem;
+        }
+
+        .callout-content h5 {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+        }
+
+        .callout-high-yield {
+            background-color: var(--danger-light);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: var(--text-primary);
+        }
+        .callout-high-yield .callout-icon, .callout-high-yield h5 { color: var(--danger); }
+
+        .callout-exam-tip {
+            background-color: var(--warning-light);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: var(--text-primary);
+        }
+        .callout-exam-tip .callout-icon, .callout-exam-tip h5 { color: var(--warning); }
+
+        .callout-remember {
+            background-color: var(--purple-light);
+            border-color: rgba(139, 92, 246, 0.3);
+            color: var(--text-primary);
+        }
+        .callout-remember .callout-icon, .callout-remember h5 { color: var(--purple); }
+
+        .callout-hint {
+            background-color: var(--success-light);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: var(--text-primary);
+        }
+        .callout-hint .callout-icon, .callout-hint h5 { color: var(--success); }
+
+        /* Modern Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        .custom-table th {
+            background-color: var(--bg-sidebar);
+            color: var(--text-primary);
+            font-weight: 700;
+            padding: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .custom-table td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .custom-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .custom-table tr:hover {
+            background-color: rgba(59, 130, 246, 0.03);
+        }
+
+        /* SVG Diagram Box */
+        .diagram-box {
+            background-color: var(--bg-primary);
+            border: 1px dashed var(--accent-primary);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .diagram-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .diagram-svg-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        /* Flow Steps */
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .flow-step {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .flow-step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Active Recall & Accordions */
+        .accordion-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .accordion-header {
+            padding: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--bg-sidebar);
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            color: var(--accent-primary);
+        }
+
+        .accordion-content {
+            padding: 1.2rem;
+            border-top: 1px solid var(--border-color);
+            display: none;
+            background-color: var(--bg-card);
+        }
+
+        .accordion-item.open .accordion-content {
+            display: block;
+        }
+
+        .accordion-item.open .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        /* Question Bank & Interactive Workflows */
+        .quiz-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quiz-badge {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .badge-easy { background-color: var(--success-light); color: var(--success); }
+        .badge-medium { background-color: var(--warning-light); color: var(--warning); }
+        .badge-hard { background-color: var(--danger-light); color: var(--danger); }
+        .badge-lecture { background-color: var(--purple-light); color: var(--purple); }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin: 1.2rem 0;
+        }
+
+        .quiz-option {
+            background-color: var(--bg-sidebar);
+            border: 1px solid var(--border-color);
+            padding: 0.9rem 1.2rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-primary);
+            background-color: var(--accent-light);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--accent-primary);
+            background-color: var(--accent-light);
+            color: var(--accent-primary);
+        }
+
+        .quiz-option.correct-option {
+            border-color: var(--success);
+            background-color: var(--success-light);
+            color: var(--success);
+        }
+
+        .quiz-option.wrong-option {
+            border-color: var(--danger);
+            background-color: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .btn-action {
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--radius-md);
+            border: none;
+            background-color: var(--accent-primary);
+            color: #fff;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-action:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-sidebar);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        /* Exam Status Bar */
+        .exam-status-bar {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-sidebar));
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .exam-score-display {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent-primary);
+        }
+
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Mobile Styles */
+        @media (max-width: 992px) {
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 65px;
+                right: 0;
+                width: 280px;
+                z-index: 999;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .sidebar.mobile-open {
+                display: block;
+            }
+
+            .main-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .search-box {
+                width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+        <a href="#" class="brand-logo">
+            <div class="brand-icon">
+                <i class="fa-solid fa-database"></i>
+            </div>
+            <div class="brand-text">
+                <h1>Database Systems Study Guide</h1>
+                <span>تطبيق المراجعة التفاعلي الشامل (Lectures 1–12)</span>
+            </div>
+        </a>
+
+        <div class="header-actions">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="بحث في المحتوى والأفكار...">
+            </div>
+
+            <button class="btn-icon" id="theme-toggle" title="تغيير المظهر">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <div class="developer-badge">
+                <i class="fa-solid fa-code"></i> Eng. Adham Hany
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Container -->
+    <div class="app-container">
+
+        <!-- Sticky Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-section-title">أقسام المادة الرئيسية</div>
+            <ul class="nav-menu">
+                <li class="nav-item active"><a href="#overview"><i class="fa-solid fa-house"></i> النظرة العامة</a></li>
+                <li class="nav-item"><a href="#part1"><i class="fa-solid fa-book-open"></i> PART 1: الشرح الكامل (1-12)</a></li>
+                <li class="nav-item"><a href="#part2"><i class="fa-solid fa-fire"></i> PART 2: High-Yield Notes</a></li>
+                <li class="nav-item"><a href="#part3"><i class="fa-solid fa-lightbulb"></i> PART 3: Memory Tricks</a></li>
+                <li class="nav-item"><a href="#part4"><i class="fa-solid fa-brain"></i> PART 4: Active Recall</a></li>
+                <li class="nav-item"><a href="#part5"><i class="fa-solid fa-list-check"></i> PART 5: بنك الأسئلة والشروحات</a></li>
+                <li class="nav-item"><a href="#part6"><i class="fa-solid fa-graduation-cap"></i> PART 6: الامتحان النهائي</a></li>
+                <li class="nav-item"><a href="#part7"><i class="fa-solid fa-bolt"></i> PART 7: مراجعة دقيقة بدقيقة</a></li>
+            </ul>
+
+            <div class="sidebar-section-title">المحاضرات والتطبيقات</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#lec1"><i class="fa-solid fa-file-lines"></i> Lec 1: مقدمة الـ DBMS</a></li>
+                <li class="nav-item"><a href="#lec2"><i class="fa-solid fa-users"></i> Lec 2: الأدوار والمعاملات ACID</a></li>
+                <li class="nav-item"><a href="#lec3"><i class="fa-solid fa-layer-group"></i> Lec 3: Three-Schema Architecture</a></li>
+                <li class="nav-item"><a href="#lec4"><i class="fa-solid fa-sitemap"></i> Lec 4: أساسيات الـ ER Model</a></li>
+                <li class="nav-item"><a href="#lec5"><i class="fa-solid fa-diagram-project"></i> Lec 5: العلاقات والـ Weak Entities</a></li>
+                <li class="nav-item"><a href="#lec6"><i class="fa-solid fa-pen-ruler"></i> Lec 6: تمارين تصاميم الـ ER</a></li>
+                <li class="nav-item"><a href="#lec8"><i class="fa-solid fa-table-cells"></i> Lec 8: خوارزمية الـ 7-Step Mapping</a></li>
+                <li class="nav-item"><a href="#lec9"><i class="fa-solid fa-square-poll-vertical"></i> Lec 9: تمارين التحويل العكسي والـ Relational</a></li>
+                <li class="nav-item"><a href="#lec10"><i class="fa-solid fa-network-wired"></i> Lec 10: الـ Enhanced ER (EER)</a></li>
+                <li class="nav-item"><a href="#lec11"><i class="fa-solid fa-vial"></i> Lec 11: تمارين وتدريبات الـ EER</a></li>
+                <li class="nav-item"><a href="#lec12"><i class="fa-solid fa-gears"></i> Lec 12: تحويل الـ EER للـ Relational</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content View -->
+        <main class="main-content">
+
+            <!-- Hero Banner -->
+            <section id="overview" class="hero-card">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-star"></i> المرجع الأكاديمي والامتحاني الموحد
+                </div>
+                <h1 class="hero-title">المعلم التفاعلي لجميع محاضرات قواعد البيانات (DB Lectures 1–12)</h1>
+                <p class="hero-desc">تطبيق مراجعة تفاعلي شامل تم تصميمه وتطويره بواسطة <strong>Eng. Adham Hany</strong> ليأخذ الطالب من مرحلة الفهم الأولي، للحفظ، للربط والتفكير المنطقي، وصولاً لأعلى درجات الاستعداد للامتحانات الأكاديمية.</p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h4>11</h4>
+                        <p>محاضرة كاملة مغطاة</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>7</h4>
+                        <p>خطوات تحويل الـ ER الكاملة</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>4</h4>
+                        <p>خيارات تحويل الـ EER (8A-8D)</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>100%</h4>
+                        <p>تفاعلي بأسئلة ورسومات SVG</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PART 1: COMPLETE STUDY GUIDE -->
+            <section id="part1">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-book-open" style="color:var(--accent-primary);"></i> PART 1 — COMPLETE STUDY GUIDE</h2>
+                    <p class="section-subtitle">شرح متكامل لجميع المفاهيم من البسيط إلى المتقدم باللغة العربية مع الحفاظ التام على المصطلحات الإنجليزية الأكاديمية.</p>
+                </div>
+
+                <!-- LECTURE 1 -->
+                <article id="lec1" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">1</div>
+                            <div>
+                                <h3 class="topic-title">مقدمة أنظمة قواعد البيانات ومقارنتها بنظم الملفات التقليدية</h3>
+                                <span class="english-term">Introduction to Database Systems & DBMS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="core-idea-box">
+                        <h5><i class="fa-solid fa-bullseye"></i> الفكرة الأساسية (Core Idea)</h5>
+                        <p>نظام إدارة قواعد البيانات (DBMS) هو برنامج محوري يقوم بإنشاء وإدارة وصيانة البيانات بطريقة مركزيّة، متغلباً على المشاكل الجسيمة لنظام الملفات التقليدي (File Processing System) مثل تكرار البيانات وتضاربها.</p>
+                    </div>
+
+                    <h4 style="margin-top:1.5rem;">📖 Detailed Explanation — الشرح التفصيلي</h4>
+                    <p>في نظام الملفات القديم (File-based approach)، كانت كل إدارة أو تطبيق يحتفظ بملفاته الخاصة، مما أدى إلى مشاكل معقدة. جاء الـ <strong>DBMS (Database Management System)</strong> ليقدم حلاً مركزياً من خلال مفهوم <strong>Data Abstraction (تجريد البيانات)</strong> و <strong>Catalog/Meta-data (فهرس البيانات)</strong>.</p>
+
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>وجه المقارنة (Feature)</th>
+                                    <th>File Processing System (الملفات)</th>
+                                    <th>DBMS (نظام قواعد البيانات)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>تكرار البيانات (Data Redundancy)</strong></td>
+                                    <td>عالي جداً (كل تطبيق له ملفاته)</td>
+                                    <td>متحكم به ومحدود جداً (Controlled Redundancy)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>تضارب البيانات (Data Inconsistency)</strong></td>
+                                    <td>محتمل جداً عند تعديل ملف دون الآخر</td>
+                                    <td>معدوم بفضل التحديث المركزي والحفاظ على الاتساق</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الاستقلالية (Program-Data Independence)</strong></td>
+                                    <td>معدومة (تعديل الهيكل يتطلب تعديل البرامج)</td>
+                                    <td>عالية جداً (فصل هيكل البيانات عن التطبيقات)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>المشاركة والوصول المتزامن (Concurrent Access)</strong></td>
+                                    <td>صعبة وتؤدي لمشاكل تداخل البيانات</td>
+                                    <td>مضمونة وآمنة عبر نظام Concurrency Control Engine</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>أمن وتكامل البيانات (Security & Integrity)</strong></td>
+                                    <td>محدود وصعب التطبيق في كل ملف</td>
+                                    <td>مركزي ويطبق Integrity Constraints و Privileges</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="callout callout-high-yield">
+                        <div class="callout-icon"><i class="fa-solid fa-fire"></i></div>
+                        <div class="callout-content">
+                            <h5>🔥 High Yield — أهم فوائد الـ DBMS</h5>
+                            <ul>
+                                <li><strong>Self-describing nature:</strong> يحتوي النظام على Catalog يخزن وصف البيانات (Meta-data).</li>
+                                <li><strong>Insulation between programs and data:</strong> تغيّر هيكل التخزين لا يؤثر على كود البرامج.</li>
+                                <li><strong>Data Abstraction:</strong> إخفاء تفاصيل التخزين الفيزيائي وعرض رؤية مفاهيمية للمستخدم.</li>
+                                <li><strong>Multiple views of the data:</strong> كل مستخدم يرى فقط البيانات المصرح له بها.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- LECTURE 2 -->
+                <article id="lec2" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">2</div>
+                            <div>
+                                <h3 class="topic-title">أدوار مستخدمي قواعد البيانات ومفهوم المعاملات (ACID)</h3>
+                                <span class="english-term">Database Users, Roles & Transactions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="core-idea-box">
+                        <h5><i class="fa-solid fa-bullseye"></i> الفكرة الأساسية (Core Idea)</h5>
+                        <p>ينقسم الأشخاص المتعاملون مع قاعدة البيانات إلى "جهات على المسرح" (Actors on the scene) وجهات "خلف الكواليس"، بينما تشكل المعاملة (Transaction) وحدة العمل الأساسية التي يجب أن تحقق شروط الـ ACID لضمان سلامة النظام.</p>
+                    </div>
+
+                    <h4>👥 تصنيف المستخدمين (Database Users & Roles)</h4>
+                    <div class="flow-container">
+                        <div class="flow-step">
+                            <div class="flow-step-num">1</div>
+                            <div>
+                                <strong>Database Administrators (DBA):</strong> مسؤولون عن إدارة الموارد، الأذونات، مراجعة الأداء، وإجراء النسخ الاحتياطي (Backup & Recovery).
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">2</div>
+                            <div>
+                                <strong>Database Designers:</strong> مسؤولون عن تحديد البيانات المراد تخزينها، واختيار الـ Conceptual Schema والـ Relationships.
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">3</div>
+                            <div>
+                                <strong>System Analysts & Application Programmers:</strong> تحديد المتطلبات وتطوير البرامج والتطبيقات التي تتعامل مع قاعدة البيانات.
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">4</div>
+                            <div>
+                                <strong>End Users (المستخدمون النهائيون):</strong>
+                                <ul style="margin-right:1.5rem; margin-top:0.3rem;">
+                                    <li><strong>Casual End Users:</strong> يطلبون تقارير متغيرة ويستخدمون لغات استعلام مثل SQL.</li>
+                                    <li><strong>Naive / Parametric End Users:</strong> يشكلون النسبة الأكبر (مثل موظفي البنوك والحجز) واستخدامهم عبر Canned Transactions مدخلة سلفاً.</li>
+                                    <li><strong>Sophisticated End Users:</strong> مهندسون ومحللون يكتبون تطبيقاتهم الخاصة.</li>
+                                    <li><strong>Standalone End Users:</strong> يستخدمون قواعد بيانات شخصية جاهزة.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:2.0rem;">⚡ المعاملات وخصائص الـ ACID (Transactions & ACID Properties)</h4>
+                    <p>المعاملة (Transaction) هي مجموعة من العمليات (Read / Write) التي تنفذ ككتلة واحدة غير قابلة للتجزئة. يجب أن تحقق أي معاملة الخصائص الأربعة التالية:</p>
+
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>الخاصية (Property)</th>
+                                    <th>المعنى الإنجليزي (English Definition)</th>
+                                    <th>الشرح المالي/الأكاديمي والتنفيذ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Atomicity (الذرية / الكل أو لا شيء)</strong></td>
+                                    <td>All-or-Nothing execution</td>
+                                    <td>إما أن تنفذ جميع عمليات المعاملة بنجاح، أو تُحذف جميع التغييرات وتلغى كأن لم تكن (Rollback/Abort). مسئولية الـ Recovery Subsystem.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Consistency (الاتساق)</strong></td>
+                                    <td>Preservation of database consistency</td>
+                                    <td>تنقل المعاملة قاعدة البيانات من حالة سليمة ومستقرة إلى حالة سليمة أخرى دون كسر أي شروط (Integrity Constraints).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Isolation (العزل)</strong></td>
+                                    <td>Transactions do not interfere with each other</td>
+                                    <td>تنفذ كل معاملة وكأنها الوحيدة في النظام، فلا تظهر نتائجها الموقتة للمعاملات الأخرى حتى تنتهي (Commit). مسئولية الـ Concurrency Control Subsystem.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Durability (الاستمرارية / الدوام)</strong></td>
+                                    <td>Changes persist after commit</td>
+                                    <td>بمجرد إتمام المعاملة بنجاح (Commit)، تفضل التغييرات محفوظة دائمًا ولا تضيع حتى لو حدث انقطاع في الكهرباء أو انهيار للنظام (System Crash).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- LECTURE 3 -->
+                <article id="lec3" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">3</div>
+                            <div>
+                                <h3 class="topic-title">نماذج البيانات ومعمارية المستويات الثلاثة (Three-Schema Architecture)</h3>
+                                <span class="english-term">Data Models, Schemas & Three-Schema Architecture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="core-idea-box">
+                        <h5><i class="fa-solid fa-bullseye"></i> الفكرة الأساسية (Core Idea)</h5>
+                        <p>تستخدم قواعد البيانات معمارية المستويات الثلاثة (Three-Schema Architecture) للفصل التام بين طريقة العرض للمستخدم، البنية المفاهيمية اللوجستية، وكيفية التخزين المادي على الأقراص، مما يحقق استقلالية البيانات (Data Independence).</p>
+                    </div>
+
+                    <h4>🏢 معمارية المستويات الثلاثة (Three-Schema Architecture)</h4>
+                    <div class="diagram-box">
+                        <div class="diagram-title"><i class="fa-solid fa-sitemap"></i> مخطط Three-Schema Architecture</div>
+                        <div class="diagram-svg-container">
+                            <svg viewBox="0 0 700 320" style="width:100%; height:auto;">
+                                <!-- Top: External Level -->
+                                <rect x="50" y="20" width="160" height="50" rx="8" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="2"/>
+                                <text x="130" y="50" text-anchor="middle" fill="var(--text-primary)" font-weight="bold">External View 1</text>
+
+                                <rect x="270" y="20" width="160" height="50" rx="8" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="2"/>
+                                <text x="350" y="50" text-anchor="middle" fill="var(--text-primary)" font-weight="bold">External View 2</text>
+
+                                <rect x="490" y="20" width="160" height="50" rx="8" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="2"/>
+                                <text x="570" y="50" text-anchor="middle" fill="var(--text-primary)" font-weight="bold">External View N</text>
+
+                                <!-- Middle: Conceptual Level -->
+                                <rect x="150" y="135" width="400" height="55" rx="10" fill="#8b5cf6" opacity="0.2" stroke="#8b5cf6" stroke-width="2"/>
+                                <text x="350" y="168" text-anchor="middle" fill="var(--text-primary)" font-size="16" font-weight="bold">Conceptual Schema (المستوى المفاهيمي)</text>
+
+                                <!-- Bottom: Internal Level -->
+                                <rect x="200" y="240" width="300" height="55" rx="10" fill="#10b981" opacity="0.2" stroke="#10b981" stroke-width="2"/>
+                                <text x="350" y="273" text-anchor="middle" fill="var(--text-primary)" font-size="16" font-weight="bold">Internal / Physical Schema (المستوى الداخلي)</text>
+
+                                <!-- Arrows -->
+                                <line x1="130" y1="70" x2="250" y2="135" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4"/>
+                                <line x1="350" y1="70" x2="350" y2="135" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4"/>
+                                <line x1="570" y1="70" x2="450" y2="135" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4"/>
+                                <line x1="350" y1="190" x2="350" y2="240" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="callout callout-exam-tip">
+                        <div class="callout-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="callout-content">
+                            <h5>🎓 Exam Alert — الفرق الحاسوم بين نوعي استقلالية البيانات</h5>
+                            <p><strong>1. Logical Data Independence (الاستقلالية المنطقية):</strong> القدرة على تعديل الـ Conceptual Schema دون الحاجة لتغيير الـ External Schemas أو برامج التطبيقات.</p>
+                            <p><strong>2. Physical Data Independence (الاستقلالية الفيزيائية):</strong> القدرة على تعديل الـ Internal Schema (مثل تغيير الفهارس Indexes أو تنظيم الملفات على القرص) دون الحاجة لتغيير الـ Conceptual Schema.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- LECTURE 4 -->
+                <article id="lec4" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">4</div>
+                            <div>
+                                <h3 class="topic-title">دورة تصميم قواعد البيانات وأساسيات الـ ER Model</h3>
+                                <span class="english-term">Database Development & ER Model Basics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="core-idea-box">
+                        <h5><i class="fa-solid fa-bullseye"></i> الفكرة الأساسية (Core Idea)</h5>
+                        <p>نموذج الكيانات والعلاقات (Entity-Relationship Model) هو نموذج مفهومي مرتفع المستوى يُستخدم لتمثيل كائنات العالم الحقيقي (Entities) وخصائصها (Attributes) والمفاتيح (Keys) التي تميزها.</p>
+                    </div>
+
+                    <h4>🔑 أنواع الصفات والسمات (Types of Attributes)</h4>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>نوع الصفة (Attribute Type)</th>
+                                    <th>الشرح والخصائص</th>
+                                    <th>مثال عملي (Example)</th>
+                                    <th>الشكل في الرسم (ER Notation)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Simple / Atomic (بسيطة)</strong></td>
+                                    <td>غير قابلة للتجزئة إلى أجزاء أصغر.</td>
+                                    <td>SSN, Sex, Age</td>
+                                    <td>شكل بيضاوي بخط عادي (Oval)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Composite (مركبة)</strong></td>
+                                    <td>يمكن تقسيمها إلى أجزاء فرعية مستقلة.</td>
+                                    <td>Name (Fname, Minit, Lname), Address</td>
+                                    <td>شكل بيضاوي متفرع منه أشكال بيضاوية</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Single-valued (أحادية القيمة)</strong></td>
+                                    <td>تحمل قيمة واحدة فقط للكيان الواحد.</td>
+                                    <td>Birth_date, SSN</td>
+                                    <td>شكل بيضاوي عادي</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Multi-valued (متعددة القيمة)</strong></td>
+                                    <td>يمكن أن تحمل أكثر من قيمة لنفس الكيان.</td>
+                                    <td>Degrees, College_Locations, Phones</td>
+                                    <td>شكل بيضاوي مزدوج (Double Oval)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Derived (مشتقة)</strong></td>
+                                    <td>لا تخزن مباشرة بل تحسب من صفة أخرى.</td>
+                                    <td>Age (تحسب من Birth_date), Total_Amount</td>
+                                    <td>شكل بيضاوي منقط (Dashed Oval)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Key Attribute (صفة المفتاح)</strong></td>
+                                    <td>خاصية فريدة تميز كل كيان عن غيره بشكل تام.</td>
+                                    <td>Ssn, Account_no, Student_ID</td>
+                                    <td>شكل بيضاوي مع تحته خط (Underlined)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- LECTURE 5 -->
+                <article id="lec5" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">5</div>
+                            <div>
+                                <h3 class="topic-title">العلاقات والقيود والكيانات الضعيفة (Weak Entities)</h3>
+                                <span class="english-term">Relationships, Constraints & Weak Entities</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="core-idea-box">
+                        <h5><i class="fa-solid fa-bullseye"></i> الفكرة الأساسية (Core Idea)</h5>
+                        <p>تحدد العلاقات (Relationships) كيفية ارتباط الكيانات ببعضها. وتحدد قيود الهيكلية (Structural Constraints) كلاً من درجة المشاركة (Total/Partial) ونسبة التعددية (1:1, 1:N, N:M)، بينما تتميز الكيانات الضعيفة بعدم وجود مفتاح رئيسي خاص بها وترتبط بكيان متبوع.</p>
+                    </div>
+
+                    <h4 style="margin-top:1.5rem;">📌 الكيانات الضعيفة (Weak Entity Types)</h4>
+                    <p>الكيان الضعيف (Weak Entity) هو كيان لا يملك صفات مفتاحية (Key Attributes) خاصة به تميزه بمفرده. يعتمد كلياً في وجوده على كيان قوي آخر يسمى <strong>Identifying / Owner Entity</strong> عبر علاقة تعريفية تسمى <strong>Identifying Relationship</strong>.</p>
+                    <ul>
+                        <li>يُمثل الكيان الضعيف بمستطيل مزدوج (Double Rectangle).</li>
+                        <li>تُمثل العلاقة التعريفية بمعين مزدوج (Double Diamond).</li>
+                        <li>يمتلك مفتاحاً جزئياً يسمى <strong>Partial Key / Discriminator</strong> ويُرسم تحته خط منقط (Dashed line).</li>
+                        <li>تكون مشاركته في العلاقة التعريفية دائماً <strong>Total Participation (خط مزدوج)</strong>.</li>
+                    </ul>
+                </article>
+
+                <!-- LECTURE 6 -->
+                <article id="lec6" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">6</div>
+                            <div>
+                                <h3 class="topic-title">تمارين تصاميم الأنظمة المفاهيمية (ER Exercises & Schemas)</h3>
+                                <span class="english-term">ER Conceptual Design Exercises</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>يحتوي هذا الجزء على تطبيقات عملية متكاملة وتحليل نصوص المتطلبات وتحويلها إلى مخططات ER مفاهيمية، مثل نظام الشركة البريدية (Mail Order)، نظام نتائج الجامعة (University Transcripts)، ونظام حجز الطيران (Airline Reservation).</p>
+
+                    <div class="callout callout-remember">
+                        <div class="callout-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div class="callout-content">
+                            <h5>🔑 قواعد تحويل المتطلبات إلى ER Diagram</h5>
+                            <ul>
+                                <li><strong>الأسماء (Nouns):</strong> تتحول غالباً إلى الكيانات (Entities) أو الصفات (Attributes).</li>
+                                <li><strong>الأفعال (Verbs):</strong> تتحول غالباً إلى علاقات (Relationships).</li>
+                                <li><strong>القيود والكلمات الفريدة (Unique, Must, Option):</strong> تحدد مفاتيح الكيانات ودرجة المشاركة (Total / Partial).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- LECTURE 8 -->
+                <article id="lec8" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">8</div>
+                            <div>
+                                <h3 class="topic-title">خوارزمية التحويل من ER إلى العلاقات (7-Step Mapping Algorithm)</h3>
+                                <span class="english-term">ER-to-Relational Mapping Algorithm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="core-idea-box">
+                        <h5><i class="fa-solid fa-bullseye"></i> الفكرة الأساسية (Core Idea)</h5>
+                        <p>تُعد خوارزمية الخطوات السبع (7-Step Algorithm) المعيار الأكاديمي الأساسي لتحويل أي مخطط ER مفاهيمي إلى مخطط علاائقي (Relational Schema) جاهز للتطبيق في SQL.</p>
+                    </div>
+
+                    <div class="flow-container">
+                        <div class="flow-step">
+                            <div class="flow-step-num">1</div>
+                            <div>
+                                <strong>Step 1: Regular Entity Types (الكيانات العادية)</strong><br>
+                                يتم تحويل كل كيان قوي E إلى جدول (Relation R). ندرج كل الصفات البسيطة. الصفات المركبة ندرج مكوناتها البسيطة فقط. نحدد المفتاح الرئيسي Primary Key.
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">2</div>
+                            <div>
+                                <strong>Step 2: Weak Entity Types (الكيانات الضعيفة)</strong><br>
+                                يتم تحويل الكيان الضعيف W إلى جدول R. ندرج صفاته البسيطة + نضم المفتاح الرئيسي للكيان القوي المالك كـ Foreign Key. يكون المفتاح الرئيسي للجدول الجديد مركباً من (Owner PK + Partial Key).
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">3</div>
+                            <div>
+                                <strong>Step 3: Binary 1:1 Relationships (علاقات 1:1)</strong><br>
+                                <em>نهج المفتاح الأجنبي (Foreign Key Approach):</em> نختار أحد الجدولين (يفضل الذى مشاركته كليّة Total) ونضع فيه المفتاح الرئيسي للجدول الآخر كـ FK مع أي صفات للعلاقة.
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">4</div>
+                            <div>
+                                <strong>Step 4: Binary 1:N Relationships (علاقات 1:N)</strong><br>
+                                يتم وضع المفتاح الرئيسي للجانب (1) كـ Foreign Key في جدول الجانب (N). وتنتقل أي صفات للعلاقة إلى جدول الجانب (N).
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">5</div>
+                            <div>
+                                <strong>Step 5: Binary M:N Relationships (علاقات M:N)</strong><br>
+                                يجب إنشاء جدول جديد ينشأ للعلاقة (Relationship Relation S). يحتوي على المفاتيح الرئيسية للكيانين المترابطين كـ Foreign Keys، ويكون المفتاح الرئيسي للجدول الجديد مركباً منهما معاُ `(PK1, PK2)`.
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">6</div>
+                            <div>
+                                <strong>Step 6: Multivalued Attributes (الصفات متعددة القيمة)</strong><br>
+                                ينشأ لكل صفة متعددة القيمة A جدول جديد R. يحتوي على القيمة A + المفتاح الرئيسي K للكيان الأب كـ Foreign Key. يكون المفتاح الرئيسي للجدول الجديد مركباً من `(K, A)`.
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num">7</div>
+                            <div>
+                                <strong>Step 7: N-ary Relationships (العلاقات المتعددة الأطراف)</strong><br>
+                                ينشأ لكل علاقة n-ary جدول جديد S. يحتوي على المفاتيح الرئيسية لجميع الكيانات المشاركة كـ Foreign Keys + صفات العلاقة.
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- LECTURE 9 -->
+                <article id="lec9" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">9</div>
+                            <div>
+                                <h3 class="topic-title">محاضرة أسئلة وتطبيقات التحويل والـ Reverse Engineering</h3>
+                                <span class="english-term">Relational Schema & Reverse Engineering Exercises</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>تتضمن هذه المحاضرة أسئلة امتحانية كلاسيكية على تحويل مخططات الشركات والطيران إلى جداول، بالإضافة إلى السؤال العكسي الهام جداً: <strong>Reverse Engineering (إعادة الهندسة العكسية من جداول إلى ER Diagram)</strong>.</p>
+                </article>
+
+                <!-- LECTURE 10 -->
+                <article id="lec10" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">10</div>
+                            <div>
+                                <h3 class="topic-title">مفاهيم الكيانات المتقدمة والوراثة (Enhanced ER / EER Modeling)</h3>
+                                <span class="english-term">Enhanced ER (EER) Concepts & Constraints</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="core-idea-box">
+                        <h5><i class="fa-solid fa-bullseye"></i> الفكرة الأساسية (Core Idea)</h5>
+                        <p>يقدم نموذج EER مفاهيم الفئات الفرعية (Subclasses)، الفئات العليا (Superclasses)، التخصص (Specialization)، والتعميم (Generalization)، مع تطبيق خاصية الوراثة (Attribute & Relationship Inheritance) وقواعد القيود.</p>
+                    </div>
+
+                    <h4>⚖️ قيود التخصص والتعميم (Disjointness & Completeness Constraints)</h4>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>نوع القيد (Constraint)</th>
+                                    <th>الرمز والخيارات</th>
+                                    <th>الشرح الأكاديمي والتطبيقي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Disjointness Constraint (قيد الانفصال)</strong></td>
+                                    <td>
+                                        <strong>Disjoint (d):</strong> منفصل<br>
+                                        <strong>Overlapping (o):</strong> متداخل
+                                    </td>
+                                    <td>
+                                        في الـ <strong>Disjoint (d)</strong>: الكيان لا يمكن أن ينتمي لأكثر من فئة فرعية واحدة في نفس الوقت (مثل Employee إما Hourly أو Salaried).<br>
+                                        في الـ <strong>Overlapping (o)</strong>: الكيان يمكن أن ينتمي لأكثر من فئة فرعية في وقت واحد (مثل Part قد تكون Manufactured و Purchased معاً).
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Completeness Constraint (قيد الشمول/الكمال)</strong></td>
+                                    <td>
+                                        <strong>Total (خط مزدوج):</strong> كلي<br>
+                                        <strong>Partial (خط مفرد):</strong> جزئي
+                                    </td>
+                                    <td>
+                                        في الـ <strong>Total Specialization:</strong> كل كيان في الفئة العليا يجب بالضرورة أن ينتمي لإحدى الفئات الفرعية.<br>
+                                        في الـ <strong>Partial Specialization:</strong> يمكن أن يوجد كيان في الفئة العليا لا ينتمي لأي فئة فرعية.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- LECTURE 11 -->
+                <article id="lec11" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">11</div>
+                            <div>
+                                <h3 class="topic-title">محاضرة تمارين وتحليل مخططات الـ EER والتأكد من صحتها</h3>
+                                <span class="english-term">EER Diagram Exercises & Diagnostic Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>تركز هذه المحاضرة على تحليل الرسوم التخطيطية واكتشاف الأخطاء الهيكلية، وتطبيق سيناريوهات القيود على حالات واقعية مثل مستخدمي الرياضات (Camper, Biker, Runner) وأنظمة الحسابات والبطاقات الائتمانية البنكية.</p>
+                </article>
+
+                <!-- LECTURE 12 -->
+                <article id="lec12" class="topic-card">
+                    <div class="topic-header">
+                        <div class="topic-title-wrapper">
+                            <div class="topic-num">12</div>
+                            <div>
+                                <h3 class="topic-title">خيارات تحويل الـ EER إلى جداول (Step 8: Options 8A–8D)</h3>
+                                <span class="english-term">Mapping EER Constructs to Relational Schema</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="core-idea-box">
+                        <h5><i class="fa-solid fa-bullseye"></i> الفكرة الأساسية (Core Idea)</h5>
+                        <p>تتم عملية تحويل التخصص/التعميم عبر 4 خيارات أساسية في الخطوة 8 (Step 8)، ويعتمد اختيار الخيار المناسب على قيود الـ Disjointness والـ Completeness وحجم البيانات.</p>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>الخيار (Option)</th>
+                                    <th>اسم النهج (Approach)</th>
+                                    <th>القيود المناسبة وشروط التطبيق</th>
+                                    <th>طريقة البناء والجداول الناتجة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Option 8A</strong></td>
+                                    <td>Multiple Relations — Superclass and Subclasses</td>
+                                    <td>يعمل مع أي قيود (Total/Partial, Disjoint/Overlapping) — عام وشامل</td>
+                                    <td>جدول للفئة العليا + جدول لكل فئة فرعية يحتوي المفتاح الرئيسي كـ PK & FK.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Option 8B</strong></td>
+                                    <td>Multiple Relations — Subclass Relations Only</td>
+                                    <td>يشترط أن تكون القيود: <strong>Total + Disjoint</strong> فقط!</td>
+                                    <td>جداول للفئات الفرعية فقط بدون جدول للفئة العليا. نكرر كافة صفات الفئة العليا في كل جدول فرعي.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Option 8C</strong></td>
+                                    <td>Single Relation with One Type Attribute</td>
+                                    <td>يشترط قيد <strong>Disjoint</strong> فقط</td>
+                                    <td>جدول واحد شامل للجميع يحتوي على صفة تمييزية واضحة `Type_Attribute` لتحديد نوع الفئة، ولكن قد ينشأ عن ذلك قيم Null كثيرة.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Option 8D</strong></td>
+                                    <td>Single Relation with Multiple Type Attributes</td>
+                                    <td>يناسب حالات الـ <strong>Overlapping</strong> خاصة</td>
+                                    <td>جدول واحد شامل يحتوي على أعلام منطقية بولينية (Boolean Flags: True/False) لكل فئة فرعية.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+
+            <!-- PART 2: HIGH-YIELD NOTES -->
+            <section id="part2" style="margin-top:4rem;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-fire" style="color:var(--danger);"></i> PART 2 — HIGH-YIELD NOTES</h2>
+                    <p class="section-subtitle">النقاط الذهبية الأكثر أهمية والتي تتكرر باستمرار في الامتحانات الأكاديمية والتقييمات.</p>
+                </div>
+
+                <div class="callout callout-high-yield">
+                    <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="callout-content">
+                        <h5>🚨 تنبيه هام: الكيانات الضعيفة لا تملك Primary Key مستقل!</h5>
+                        <p>في الامتحان، يقع العديد من الطلاب في خطأ افتراض وجود مفتاح رئيسي للكيان الضعيف. المفتاح الرئيسي للكيان الضعيف <strong>يتشكل دائماً بالدمج</strong> بين المفتاح الرئيسي للكيان القوي المالك (Owner PK) والـ Partial Key الخاص بالكيان الضعيف.</p>
+                    </div>
+                </div>
+
+                <div class="callout callout-high-yield">
+                    <div class="callout-icon"><i class="fa-solid fa-fire"></i></div>
+                    <div class="callout-content">
+                        <h5>🔥 قيد خيار التحويل Option 8B</h5>
+                        <p>Option 8B لا يمكن استخدامه أبداً إذا كان التخصص Partial أو Overlapping! يُستخدم <strong>فقط وفقط</strong> عندما يكون التخصص <code>Total + Disjoint</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PART 3: MEMORY TRICKS -->
+            <section id="part3" style="margin-top:4rem;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-lightbulb" style="color:var(--warning);"></i> PART 3 — MEMORY TRICKS & EXAM TIPS</h2>
+                    <p class="section-subtitle">حيل ذهنية وشفرات حفظ سريعة للمفاهيم المعقدة.</p>
+                </div>
+
+                <div class="topic-card">
+                    <h3>🧠 شفرات الحفظ التلقائي (Mnemonics)</h3>
+                    <div class="flow-container" style="margin-top:1rem;">
+                        <div class="flow-step">
+                            <div class="flow-step-num" style="background-color:var(--purple);">1</div>
+                            <div>
+                                <strong>شفرة خصائص المعاملات (ACID):</strong><br>
+                                تذكر كلمة <strong>ACID</strong>: Atomicity (ذرية), Consistency (اتساق), Isolation (عزل), Durability (استمرارية).
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-num" style="background-color:var(--purple);">2</div>
+                            <div>
+                                <strong>شفرة خوارزمية التحويل السبعة (7-Step Sequence):</strong><br>
+                                احفظ الاختصار: <strong>R - W - 1 - N - M - V - N</strong><br>
+                                <code>Regular entities -> Weak entities -> 1:1 -> 1:N -> M:N -> Multivalued -> N-ary</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PART 4: ACTIVE RECALL -->
+            <section id="part4" style="margin-top:4rem;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-brain" style="color:var(--purple);"></i> PART 4 — ACTIVE RECALL (المراجعة النشطة)</h2>
+                    <p class="section-subtitle">حاول الإجابة بعقلك أولاً قبل النقر لإظهار الحل والتفسير الشامل.</p>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Q1: ما هو الفرق بين اللغات الإجرائية Procedural واللاإجرائية Non-Procedural DML؟</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>الإجابة:</strong></p>
+                        <p>اللغة <strong>Procedural (High-level):</strong> يحدد المستخدم البيانات المطلوبة وكيفية الحصول عليها خطوة بخطوة (مثل Relational Algebra).</p>
+                        <p>اللغة <strong>Non-Procedural (Declarative / Low-level):</strong> يحدد المستخدم البيانات المطلوبة فقط دون التدخل في كيفية جلبها (مثل لغة SQL).</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Q2: متى يتم استخدام الجدول المستقل في علاقات 1:1 (Cross-reference approach)؟</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>الإجابة:</strong></p>
+                        <p>يتم إنشاء جدول ثالث مستقل للعلاقة 1:1 عندما تكون مشاركة الكيانين جزئية (Both participations are Partial) لمنع ظهور قيم Null كثيرة في الجدولين.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PART 5: QUESTION BANK & WORKFLOWS -->
+            <section id="part5" style="margin-top:4rem;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-list-check" style="color:var(--accent-primary);"></i> PART 5 — QUESTION BANK (بنك الأسئلة الشامل وتدريبات المحاضرات)</h2>
+                    <p class="section-subtitle">مجموعة أسئلة متدرجة من السهل إلى الصعب مع مسارات تفاعلية لعرض الأسئلة والحلول والرسومات.</p>
+                </div>
+
+                <!-- Lecture 11 Exercise 2 Diagnostic -->
+                <div class="quiz-card">
+                    <span class="quiz-badge badge-lecture">Lecture 11 — Exercise 2 Diagnostic</span>
+                    <h4>سؤال التحليل التخصصي: أي من مخططات الـ EER التالية غير صحيح ولماذا؟</h4>
+
+                    <div style="margin:1rem 0;">
+                        <strong>الحالة (C):</strong> دوائر التخصص <code>o</code> المربوطة بالكيانين <code>E1</code> و <code>E3</code> بدون وجود الكيان الأعلى (Superclass).
+                    </div>
+
+                    <button class="btn-action btn-outline toggle-solution-btn" onclick="toggleSolution('sol-ex2c')">
+                        <i class="fa-solid fa-eye"></i> عرض التفسير والحل الهيكلي
+                    </button>
+
+                    <div id="sol-ex2c" style="display:none; margin-top:1rem; padding:1rem; background-color:var(--bg-sidebar); border-radius:var(--radius-md);">
+                        <p style="color:var(--danger); font-weight:bold;">❌ غير صحيح (Incorrect Diagram)</p>
+                        <p><strong>السبب العلمي:</strong> لا يمكن إقامة دائرة تخصص أو تعميم (Specialization/Generalization circle) دون ربطها من الأعلى بـ Superclass. المخطط يحتوي على فئتين فرعيتين موصولتين بدائرة <code>o</code> في الهواء دون وجود كائن أعلى ترث منه الصفات!</p>
+                    </div>
+                </div>
+
+                <!-- Lecture 12 Exercise 2 Instructor / Institution -->
+                <div class="quiz-card">
+                    <span class="quiz-badge badge-hard">Lecture 12 — Exercise 2</span>
+                    <h4>قم بتحويل مخطط الـ EER الخاص بـ INSTRUCTOR و FULL_TIME / PART_TIME إلى جداول علاائقية.</h4>
+
+                    <button class="btn-action toggle-solution-btn" onclick="toggleSolution('sol-lec12ex2')">
+                        <i class="fa-solid fa-diagram-project"></i> عرض الجداول والرسم التخطيطي للحل
+                    </button>
+
+                    <div id="sol-lec12ex2" style="display:none; margin-top:1.5rem;">
+                        <div class="diagram-box">
+                            <div class="diagram-title"><i class="fa-solid fa-table"></i> المخطط العلاائقي المترابط (Relational Schema)</div>
+                            <div class="diagram-svg-container">
+                                <svg viewBox="0 0 750 260" style="width:100%; height:auto;">
+                                    <!-- Instructor Table -->
+                                    <rect x="20" y="20" width="400" height="45" rx="6" fill="#1f2937" stroke="#3b82f6" stroke-width="2"/>
+                                    <text x="220" y="48" text-anchor="middle" fill="#fff" font-weight="bold">INSTRUCTOR (Instructor_ID, Name, Instructor_Type)</text>
+
+                                    <!-- Address Table -->
+                                    <rect x="460" y="20" width="260" height="45" rx="6" fill="#1f2937" stroke="#8b5cf6" stroke-width="2"/>
+                                    <text x="590" y="48" text-anchor="middle" fill="#fff" font-weight="bold">INSTRUCTOR_ADDR (Instructor_ID, Address)</text>
+
+                                    <!-- Full Time Table -->
+                                    <rect x="20" y="100" width="320" height="45" rx="6" fill="#1f2937" stroke="#10b981" stroke-width="2"/>
+                                    <text x="180" y="128" text-anchor="middle" fill="#fff" font-weight="bold">FULL_TIME (F_Instructor_ID, Salary)</text>
+
+                                    <!-- Part Time Table -->
+                                    <rect x="380" y="100" width="340" height="45" rx="6" fill="#1f2937" stroke="#f59e0b" stroke-width="2"/>
+                                    <text x="550" y="128" text-anchor="middle" fill="#fff" font-weight="bold">PART_TIME (P_Instructor_ID, Hours, Hr_Rate)</text>
+
+                                    <!-- Institution Table -->
+                                    <rect x="180" y="180" width="380" height="45" rx="6" fill="#1f2937" stroke="#ef4444" stroke-width="2"/>
+                                    <text x="370" y="208" text-anchor="middle" fill="#fff" font-weight="bold">INSTITUTION (Instructor_ID, Ins_ID, Title)</text>
+
+                                    <!-- Arrows Foreign Keys -->
+                                    <path d="M 590 65 L 590 85 L 220 85 L 220 65" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="3"/>
+                                    <path d="M 180 145 L 180 165 L 220 165 L 220 65" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="3"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PART 6: INTERACTIVE FINAL EXAM -->
+            <section id="part6" style="margin-top:4rem;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-graduation-cap" style="color:var(--success);"></i> PART 6 — INTERACTIVE FINAL EXAM (الامتحان النهائي التفاعلي)</h2>
+                    <p class="section-subtitle">اختبر معلوماتك في كافة المحاضرات واحصل على تقييمك الفوري ودرجتك التراكمية.</p>
+                </div>
+
+                <div class="exam-status-bar">
+                    <div>
+                        <h4 style="font-size:1.1rem;">مجموع النقاط والنتيجة الحالية</h4>
+                        <p style="color:var(--text-secondary); font-size:0.9rem;">أجب عن الأسئلة واضغط على زر حساب النتيجة النهائية</p>
+                    </div>
+                    <div class="exam-score-display" id="final-score-val">0 / 3</div>
+                </div>
+
+                <!-- Exam Question 1 -->
+                <div class="quiz-card" id="q1-card">
+                    <span class="quiz-badge badge-easy">سؤال 1 — MCQs</span>
+                    <h4>أي مما يلي يُعد من خصائص الـ DBMS والتي تعني إخفاء تفاصيل التخزين الفيزيائي وتسهيل فهم البيانات؟</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 1, false)">A. Data Inconsistency</div>
+                        <div class="quiz-option" onclick="selectOption(this, 1, true)">B. Data Abstraction</div>
+                        <div class="quiz-option" onclick="selectOption(this, 1, false)">C. Program-Data Dependency</div>
+                        <div class="quiz-option" onclick="selectOption(this, 1, false)">D. Canned Transaction</div>
+                    </div>
+                </div>
+
+                <!-- Exam Question 2 -->
+                <div class="quiz-card" id="q2-card">
+                    <span class="quiz-badge badge-medium">سؤال 2 — MCQs</span>
+                    <h4>في خوارزمية تحويل الـ ER (7-Step Mapping)، أين يتم وضع المفتاح الأجنبي Foreign Key في علاقات 1:N؟</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 2, false)">A. في جدول الجانب (1) فقط</div>
+                        <div class="quiz-option" onclick="selectOption(this, 2, true)">B. في جدول الجانب (N)</div>
+                        <div class="quiz-option" onclick="selectOption(this, 2, false)">C. في جدول ثالث مستقل ينشأ فوراً</div>
+                        <div class="quiz-option" onclick="selectOption(this, 2, false)">D. يمكن وضعه في أي جدول عشوائياً</div>
+                    </div>
+                </div>
+
+                <!-- Exam Question 3 -->
+                <div class="quiz-card" id="q3-card">
+                    <span class="quiz-badge badge-hard">سؤال 3 — MCQs</span>
+                    <h4>ما هو الشرط الأساسي الذي يمنع استخدام الخيار Option 8B تماماً عند تحويل الـ EER إلى جداول؟</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 3, false)">A. أن يكون التخصص Disjoint</div>
+                        <div class="quiz-option" onclick="selectOption(this, 3, false)">B. أن يكون التخصص Total</div>
+                        <div class="quiz-option" onclick="selectOption(this, 3, true)">C. إذا كان التخصص Partial أو Overlapping</div>
+                        <div class="quiz-option" onclick="selectOption(this, 3, false)">D. إذا كانت الفئة العليا تحتوي على مفتاح رئيسي</div>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin-top:2rem;">
+                    <button class="btn-action" style="font-size:1.1rem; padding:0.9rem 2.5rem;" onclick="calculateFinalScore()">
+                        <i class="fa-solid fa-trophy"></i> اعتماد وإظهار النتيجة والتقييم
+                    </button>
+                </div>
+            </section>
+
+            <!-- PART 7: LAST-MINUTE REVISION -->
+            <section id="part7" style="margin-top:4rem; margin-bottom:5rem;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-bolt" style="color:var(--warning);"></i> PART 7 — LAST-MINUTE REVISION (مراجعة اللحظات الأخيرة)</h2>
+                    <p class="section-subtitle">ملخص ملهم وسريع للراجع والتركيز الشديد قبل دخول قاعة الامتحان.</p>
+                </div>
+
+                <div class="topic-card" style="background:linear-gradient(135deg, var(--bg-card), var(--bg-sidebar)); border-color:var(--accent-primary);">
+                    <h3 style="color:var(--accent-primary); margin-bottom:1rem;">📌 1-Minute Summary (ملخص الدقيقة الواحدة للمادة)</h3>
+                    <p>1. الـ DBMS يحل مشاكل الملفات التقليدية عبر التجريد، الإدارة المركزية، والتحكم في التكرار.</p>
+                    <p>2. معمارية Three-Schema تُحقق الاستقلالية المنطقية والفيزيائية للبيانات.</p>
+                    <p>3. خوارزمية الـ 7 خطوات تحول الكيانات القوية والضعيفة والعلاقات والصفات متعددة القيمة إلى جداول علاائقية متماسكة.</p>
+                    <p>4. خيارات الـ EER الاربعة (8A-8D) تتيح تحويل الوراثة والتخصص بحسب قيود الـ Disjointness والـ Completeness.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Back to Top Floating Button -->
+    <div id="back-to-top" title="العودة للأعلى">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
+
+    <!-- Embedded Vanilla JavaScript Logic -->
+    <script>
+        // Reading Progress Bar Script
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            // Back to top visibility
+            let backToTopBtn = document.getElementById("back-to-top");
+            if (winScroll > 400) {
+                backToTopBtn.classList.add("visible");
+            } else {
+                backToTopBtn.classList.remove("visible");
+            }
+        };
+
+        // Scroll back to top
+        document.getElementById("back-to-top").addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Theme Toggle (Dark / Light Mode)
+        const themeToggleBtn = document.getElementById("theme-toggle");
+        const currentTheme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggleBtn.addEventListener("click", () => {
+            let theme = document.documentElement.getAttribute("data-theme");
+            let newTheme = theme === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeToggleBtn.innerHTML = theme === "dark" 
+                ? '<i class="fa-solid fa-sun"></i>' 
+                : '<i class="fa-solid fa-moon"></i>';
+        }
+
+        // Active Recall Accordions
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+
+        // Toggle Solutions Visibility
+        function toggleSolution(id) {
+            const solDiv = document.getElementById(id);
+            if (solDiv.style.display === "none" || solDiv.style.display === "") {
+                solDiv.style.display = "block";
+            } else {
+                solDiv.style.display = "none";
+            }
+        }
+
+        // Live Search Filter
+        document.getElementById('search-input').addEventListener('keyup', function(e) {
+            let term = e.target.value.toLowerCase();
+            let cards = document.querySelectorAll('.topic-card, .quiz-card');
+
+            cards.forEach(card => {
+                let text = card.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Exam Scoring Logic
+        let userAnswers = {};
+
+        function selectOption(element, qId, isCorrect) {
+            let parent = element.parentElement;
+            parent.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected', 'correct-option', 'wrong-option');
+            });
+
+            element.classList.add('selected');
+            userAnswers[qId] = isCorrect;
+        }
+
+        function calculateFinalScore() {
+            let total = 3;
+            let score = 0;
+            for (let q = 1; q <= total; q++) {
+                if (userAnswers[q] === true) {
+                    score++;
+                }
+            }
+
+            let display = document.getElementById('final-score-val');
+            display.innerText = score + ' / ' + total;
+
+            let percentage = (score / total) * 100;
+            let badge = '';
+
+            if (percentage >= 90) {
+                badge = '🏆 ممتاز! (90-100%) — استيعاب كامل للمادة';
+            } else if (percentage >= 75) {
+                badge = '🔥 جيد جداً! (75-89%) — مستوى متقدم';
+            } else if (percentage >= 60) {
+                badge = '👍 جيد! (60-74%) — يحتاج بعض المراجعة';
+            } else {
+                badge = '📚 يحتاج لمراجعة الشروحات مرة أخرى';
+            }
+
+            alert('النتيجة النهائية: ' + score + ' من ' + total + '\n' + badge);
+        }
+    </script>
+</body>
+</html>

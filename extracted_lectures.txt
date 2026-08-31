@@ -1,0 +1,2849 @@
+========================================
+FILE: DB_Lecture-1.pdf (Pages: 13)
+========================================
+
+--- DB_Lecture-1.pdf | Page 1 ---
+10/2/2024
+1
+1.1
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Lecture 1
+Fundamental Database Concepts
+1.2
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Lecture objectives
+1. What is a database?
+2. Why use a DBMS?
+3. Characteristics of the Database Approach
+4. Advantages of Using a DBMS
+1
+2
+
+
+--- DB_Lecture-1.pdf | Page 2 ---
+10/2/2024
+2
+1.3
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. What is a Database?
+❖A database is any collection of data.
+❖A database is an organized collection of  
+logically related data
+❖A DBMS is a software system designed to  
+maintain a database.
+❖We use a DBMS when
+▪There is a large amount of data
+▪Security and integrity of the data are important
+▪Many users access the data concurrently
+1.4
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example Database Application
+❖Consider a Phone Company, such as AT&T
+❖Kinds of information they deal with:
+▪Customer records
+▪Employee records
+▪Management records
+▪Billing information
+▪Customer service orders
+3
+4
+
+
+--- DB_Lecture-1.pdf | Page 3 ---
+10/2/2024
+3
+1.5
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Concerns of a Database User
+❖With all that data, AT&T must be concerned  
+with questions such as:
+▪Where is the information kept?
+▪How is the data structured?
+▪How is the data kept consistent?
+▪How is the data described?
+▪How is the data kept secure?
+▪How do different pieces of data interrelate?
+1.6
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+2. Why Use a DBMS?
+❖Without a DBMS, we'd have:
+data stored as bits on disks
+organized as files
+Access by a collection
+of ad hoc programs
+in C++, Java, PHP, etc.
+users of
+the data
+There is no control or
+coordination of what
+these programs do
+with the data
+5
+6
+
+
+--- DB_Lecture-1.pdf | Page 4 ---
+10/2/2024
+4
+1.7
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Why Use a DBMS?
+❖With a DBMS, we have:
+data stored as bits on disks
+organized as files
+users of
+the data
+DBMS provides 
+control and 
+coordination to 
+protect the data.
+DBMS 
+applications
+1.8
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+DBMS Structure
+data
+users of
+the data
+data
+dictionary
+data
+definition
+processor
+query processor
+security manager
+concurrency manager
+index manager
+application
+program(s)
+application
+program(s)
+application
+program(s)
+Application
+program(s)
+Internal/implementation view
+External/application view
+DBMS
+software
+components
+data
+description
+7
+8
+
+
+--- DB_Lecture-1.pdf | Page 5 ---
+10/2/2024
+5
+1.9
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+DBMS Languages
+users of
+the data
+application
+program(s)
+application
+program(s)
+application
+program(s)
+application
+program(s)
+data
+data
+dictionary
+data
+definition
+processor
+query processor
+security manager
+concurrency manager
+index manager
+DDL:
+data
+definition
+language
+system 
+configuration
+languages
+QL: query language
+DML: data manipulation language
+GPL: general purpose languages
+1.10
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+3. Characteristics of the Database 
+Approach
+❖Traditional file processing
+▪Each user defines and implements the files 
+needed for a specific software application. 
+❖Database approach
+▪Single repository maintains data that is 
+defined once and then accessed by various 
+users.
+9
+10
+
+
+--- DB_Lecture-1.pdf | Page 6 ---
+10/2/2024
+6
+1.11
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Disadvantages of File Processing
+❖Program-Data Dependence
+▪All programs maintain metadata for each file they use
+❖Duplication of Data
+▪Different systems/programs have separate copies of 
+the same data
+❖Limited Data Sharing
+▪No centralized control of data
+❖Lengthy Development Times
+▪Programmers must design their own file formats
+❖Excessive Program Maintenance
+▪80% of information systems budget
+1.12
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Duplicate Data
+11
+12
+
+
+--- DB_Lecture-1.pdf | Page 7 ---
+10/2/2024
+7
+1.13
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Solution: The Database Approach
+❖Central repository of shared data.
+❖Data is managed by a controlling agent.
+❖Stored in a standardized, convenient form.
+Order Filing
+ System
+Invoicing
+ System
+Payroll
+ System
+DBMS
+Central database
+Contains employee,
+order, inventory, 
+pricing, and 
+customer data
+1.14
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Characteristics of the Database 
+Approach (cont'd)
+❖Main characteristics of database approach
+▪Self-describing nature of a database system
+▪Insulation between programs and data, and 
+data abstraction
+▪Support of multiple views of the data
+▪Sharing of data and multiuser transaction 
+processing
+13
+14
+
+
+--- DB_Lecture-1.pdf | Page 8 ---
+10/2/2024
+8
+1.15
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+users of
+the data
+application
+program(s)
+application
+program(s)
+application
+program(s)
+application
+program(s)
+data
+data
+dictionary
+data
+definition
+processor
+query processor
+security manager
+concurrency manager
+index manager
+software operating
+between the data and
+the applications can 
+provide many 
+capabilities 
+in a generic way
+4. Advantages of Using a DBMS
+1.16
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. Persistence
+❖A DBMS provides 
+    persistent objects, types and data structures
+▪persistent = having a lifetime longer than 
+                       the programs that use the data
+▪any information that fits the data model 
+of a particular DBMS can be made persistent with 
+little effort
+▪data model = concepts that can be used to 
+describe the data
+15
+16
+
+
+--- DB_Lecture-1.pdf | Page 9 ---
+10/2/2024
+9
+1.17
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+2. Concurrency
+❖A DBMS supports access by concurrent users
+▪concurrent = happening at the same time
+▪concurrent access, particularly writes (data 
+changes), can result in inconsistent states 
+(even when the individual operations are correct)
+▪the DBMS can check the actual operations of 
+concurrent users, to prevent activity that will lead to 
+inconsistent states
+1.18
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+3. Access Control
+❖A DBMS can restrict access to authorized users
+▪Security policies often require control that is more 
+fine-grained than that provided by a file system
+▪Since the DBMS understands the data structure, it 
+can enforce fairly sophisticated and detailed security 
+policies
+❖on subsets of the data
+❖on subsets of the available operations
+17
+18
+
+
+--- DB_Lecture-1.pdf | Page 10 ---
+10/2/2024
+10
+1.19
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+4. Redundancy Control
+❖A DBMS can assist in controlling redundancy
+▪Redundancy = multiple copies of the same data
+▪With file storage, it's often convenient to store 
+multiple copies of the same data, so that it's 
+"local" to other data and applications
+▪This can cause many problems:
+❖wasted disk space
+❖inconsistencies
+❖need to enter the data multiple times
+1.20
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+5. Complex Semantics
+❖A DBMS supports representation of complex 
+relationships and integrity constraints
+▪The semantics (meaning) of an application often 
+includes many relationships and rules about the 
+relative values of subsets of the data
+▪These further restrict the possible instances of 
+the database
+▪Relationships and constraints can be defined as 
+part of the schema
+19
+20
+
+
+--- DB_Lecture-1.pdf | Page 11 ---
+10/2/2024
+11
+1.21
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Complex Semantics(cont'd)
+❖Enforcing integrity constraints
+▪Referential integrity constraint 
+Every section record must be related to a course record
+▪Key or uniqueness constraint
+Every course record must have a unique value for 
+Course_number
+▪Business rules
+1.22
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+6. Query Processing
+❖Providing storage structures and search 
+techniques for efficient query processing
+▪Indexes
+▪Buffering and caching
+▪Query processing and optimization
+21
+22
+
+
+--- DB_Lecture-1.pdf | Page 12 ---
+10/2/2024
+12
+1.23
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+7. Backup and Recovery
+❖A DBMS can provide backup and recovery
+▪Backup = snapshots of the data particular times
+▪Recovery = restoring the data to a consistent 
+state after a system crash
+▪The higher level semantics (relationships and 
+constraints) can make it difficult to restore a 
+consistent state
+▪Transaction analysis can allow a DBMS to 
+reconstruct a consistent state from a number of 
+backups
+1.24
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+8. Views and Interfaces
+❖A DBMS can support multiple user interfaces 
+and user views
+▪Since the DBMS provides a well-defined data 
+model and a persistent data dictionary, many 
+different interfaces can be developed to access 
+the same data
+▪Data independence ensures that these UIs will 
+not be made invalid by most changes to the data
+23
+24
+
+
+--- DB_Lecture-1.pdf | Page 13 ---
+10/2/2024
+13
+1.25
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Advantages of Using a DBMS (Summary)
+1. Persistent objects, types and data structures.
+2. Control of concurrent users.
+3. Restricting access (security).
+4. Controlling of redundancy.
+5. Representation of complex relationships 
+    and integrity constraints.
+6. Efficient query processing.
+7. Backup and recovery.
+8. Multiple user interfaces and user views.
+1.26
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+25
+26
+
+
+========================================
+FILE: DB_Lecture-10.pdf (Pages: 29)
+========================================
+
+--- DB_Lecture-10.pdf | Page 1 ---
+10.1
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-10.pdf | Page 2 ---
+10.2
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Objectives
+
+
+--- DB_Lecture-10.pdf | Page 3 ---
+10.3
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. Associative Entities
+3
+
+
+--- DB_Lecture-10.pdf | Page 4 ---
+10.4
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+A binary relationship with an attribute
+Here, the date completed attribute pertains specifically to the 
+employee’s completion of a course…it is an attribute of the 
+relationship.
+Certificate
+Date 
+Completed
+
+
+--- DB_Lecture-10.pdf | Page 5 ---
+10.5
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+An associative entity (CERTIFICATE)
+Associative entity is like a relationship with an attribute, but it 
+is also considered to be an entity in its own right.
+Note that the many-to-many cardinality between entities in the 
+previous figure has been replaced by two one-to-many 
+relationships with the associative entity.
+
+
+--- DB_Lecture-10.pdf | Page 6 ---
+10.6
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Associative Entities Cont’d
+
+
+--- DB_Lecture-10.pdf | Page 7 ---
+10.7
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+2. Supertypes and Subtypes
+
+
+--- DB_Lecture-10.pdf | Page 8 ---
+10.8
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Subclasses, Superclasses, and 
+Inheritance
+v EER model includes all modeling concepts of 
+the ER model
+v In addition, EER includes:
+v Subclasses and superclasses
+v Specialization and generalization
+v Category or union type
+v Attribute and relationship inheritance
+
+
+--- DB_Lecture-10.pdf | Page 9 ---
+10.9
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Subclasses, Superclasses, and 
+Inheritance (cont’d.)
+v Terms for relationship between a superclass 
+and any one of its subclasses
+v Superclass/subclass
+v Supertype/subtype
+v Class/subclass relationship
+v Type inheritance
+v Subclass entity inherits all attributes and 
+relationships of superclass
+
+
+--- DB_Lecture-10.pdf | Page 10 ---
+10.10
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Basic notation for supertype/subtype notation
+a) EER            
+notation
+
+
+--- DB_Lecture-10.pdf | Page 11 ---
+10.11
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Employee Supertype with Three Subtypes
+All employee subtypes 
+will have employee 
+number, name, address, 
+and date hired
+Each employee subtype 
+will also have its own 
+attributes
+
+
+--- DB_Lecture-10.pdf | Page 12 ---
+10.12
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Relationships and Subtypes
+
+
+--- DB_Lecture-10.pdf | Page 13 ---
+10.13
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Supertype/subtype relationships in a hospital
+
+
+--- DB_Lecture-10.pdf | Page 14 ---
+10.14
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Three specialization of Employee& 
+subtype relationships
+
+
+--- DB_Lecture-10.pdf | Page 15 ---
+10.15
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Generalization and Specialization
+
+
+--- DB_Lecture-10.pdf | Page 16 ---
+10.16
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example of generalization
+a) Three entity types: CAR, TRUCK, and MOTORCYCLE
+All these types of vehicles have common attributes
+
+
+--- DB_Lecture-10.pdf | Page 17 ---
+10.17
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example of generalization (cont.)
+So we put 
+the shared 
+attributes in 
+a supertype
+Note: no subtype for motorcycle, since it has no unique attributes
+a) Generalization to VEHICLE supertype 
+
+
+--- DB_Lecture-10.pdf | Page 18 ---
+10.18
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example of specialization
+ b) Entity type PART
+Only applies to 
+manufactured parts
+Applies only to purchased parts
+
+
+--- DB_Lecture-10.pdf | Page 19 ---
+10.19
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+b) Specialization to MANUFACTURED PART and PURCHASED PART
+Note: multivalued composite attribute was replaced 
+by an associative entity relationship to another entity
+Created 2 
+subtypes
+Example of specialization (cont.)
+
+
+--- DB_Lecture-10.pdf | Page 20 ---
+10.20
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-10.pdf | Page 21 ---
+10.21
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Examples of completeness constraints
+ a) Total specialization rule
+
+
+--- DB_Lecture-10.pdf | Page 22 ---
+10.22
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+b) Partial specialization rule
+Examples of completeness constraints (cont.)
+
+
+--- DB_Lecture-10.pdf | Page 23 ---
+10.23
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-10.pdf | Page 24 ---
+10.24
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+ a) Disjoint rule
+Examples of disjointness constraints
+
+
+--- DB_Lecture-10.pdf | Page 25 ---
+10.25
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+b) Overlap rule
+Examples of disjointness constraints (cont.)
+
+
+--- DB_Lecture-10.pdf | Page 26 ---
+10.26
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-10.pdf | Page 27 ---
+10.27
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Introducing a subtype discriminator (disjoint rule)
+
+
+--- DB_Lecture-10.pdf | Page 28 ---
+10.28
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Subtype discriminator (overlap rule)
+
+
+--- DB_Lecture-10.pdf | Page 29 ---
+10.29
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+
+========================================
+FILE: DB_Lecture-11.pdf (Pages: 11)
+========================================
+
+--- DB_Lecture-11.pdf | Page 1 ---
+11.1
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-11.pdf | Page 2 ---
+11.2
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Exercise (1)
+At weekend the entity type PERSON has three sub-types: 
+CAMPER, BIKER, and RUNNER. Draw a separate EER 
+diagram segment for each of the following:
+A) At a given time a person must be exactly one of these 
+subtypes.
+B) A person may or may not be one of these subtypes. 
+However, a person who is one of these subtypes 
+cannot at the same time be one of the other subtypes.
+C) A person may or may not be one of these subtypes. On 
+the other hand, a person may be any two (or even 
+three) of these subtypes at the same time.
+D) At a given time a person may be at least one of these 
+subtypes.
+
+
+--- DB_Lecture-11.pdf | Page 3 ---
+11.3
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Which of the following EER diagram(s) is/are 
+incorrect and why?
+Exercise (2)
+1
+N
+R
+   A
+E
+E3
+   B
+o
+E1
+E2
+A)
+
+
+--- DB_Lecture-11.pdf | Page 4 ---
+11.4
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Which of the following EER diagram(s) is/are 
+incorrect and why?
+Exercise (2)
+B)
+1
+1
+  A
+E
+R
+E2
+d
+E1
+
+
+--- DB_Lecture-11.pdf | Page 5 ---
+11.5
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Which of the following EER diagram(s) is/are 
+incorrect and why?
+Exercise (2)
+C)
+N
+M
+  A
+E1
+  C
+E3
+o
+R
+
+
+--- DB_Lecture-11.pdf | Page 6 ---
+11.6
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Exercise (3)
+A Bank has three types of accounts: Checking, Saving, and 
+Loan. Following are the attributes for each type of account
+CHECKING: Acct_No, Date_Opened, Balance,  
+                     Service_Charge.
+SAVING: Acct_No, Date_Opened, Balance, Interest_Rate
+LOAN: Acct_No, Date_Opened, Balance, Interest_Rate, 
+Payment
+Assume that each bank account must be a member of 
+exactly one of these subtypes. Using generalization, 
+develop an EER model segment to represent this situation 
+using the traditional EER notation.
+
+
+--- DB_Lecture-11.pdf | Page 7 ---
+11.7
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Exercise (4)
+
+
+--- DB_Lecture-11.pdf | Page 8 ---
+11.8
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Consider the BANK ER schema of the previous 
+Figure, and suppose that it is necessary to keep track 
+of different types of ACCOUNTS (SAVINGS_ACCTS, 
+CHECKING_ACCTS, ...) and LOANS (CAR_LOANS, 
+HOME_LOANS, ...). Suppose that it is also desirable 
+to keep track of each account's TRANSACTIONs 
+(deposits, withdrawals, checks, ...) and each loan's 
+PAYMENTs; both of these include the amount, date, 
+time, ...  Modify the BANK schema, using ER and 
+EER concepts of specialization and generalization. 
+State any assumptions you make about the additional 
+requirements.
+Exercise (4)
+
+
+--- DB_Lecture-11.pdf | Page 9 ---
+11.9
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Answer
+
+
+--- DB_Lecture-11.pdf | Page 10 ---
+11.10
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+In a banking information system there are 3 types of credit cards, 
+debit, credit, and ATM cards. For each card we keep some attributes 
+such as Card-Id, Expiry-date, and card-type.
+For debit cards we add account-no as an attribute.
+For credit cards we add current-balance as attribute.
+For ATM cards no other attributes are added.
+ Draw an EER diagram for this problem given the following 
+business rules:
+Any card is credit, debit, or ATM card.
+Only credit card accounts accumulate charges coming from 
+merchants.
+Each merchant is identified by merchant-id, and Address.
+Each charge is identified by {merchant-ID, Credit card-ID, value, 
+date, and time}.
+A credit card can be used with more than one merchant, but no other 
+card types can be used with merchants.
+Exercise (5)
+
+
+--- DB_Lecture-11.pdf | Page 11 ---
+11.11
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+
+========================================
+FILE: DB_Lecture-12.pdf (Pages: 18)
+========================================
+
+--- DB_Lecture-12.pdf | Page 1 ---
+12.1
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-12.pdf | Page 2 ---
+12.2
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Discussion and Summary of Mapping 
+for ER Model Constructs
+
+
+--- DB_Lecture-12.pdf | Page 3 ---
+12.3
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Step 8: Options for Mapping of 
+Specialization or Generalization
+v Option 8A: Multiple relations—superclass 
+and subclasses
+v Option 8A works for any constraints on the 
+specialization (total or partial, disjoint or 
+overlapping)
+
+
+--- DB_Lecture-12.pdf | Page 4 ---
+12.4
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Option 8a Example
+
+
+--- DB_Lecture-12.pdf | Page 5 ---
+12.5
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Option 8a Example Cont’d
+
+
+--- DB_Lecture-12.pdf | Page 6 ---
+12.6
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Step 8: Options for Mapping of 
+Specialization or Generalization
+v Option 8B: Multiple relations—subclass 
+relations only.
+v Option 8B works well only when both the 
+disjoint  and total constraints hold.
+
+
+--- DB_Lecture-12.pdf | Page 7 ---
+12.7
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Option 8b Example
+
+
+--- DB_Lecture-12.pdf | Page 8 ---
+12.8
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+v Option 8C: Single relation with one type 
+attribute.
+v Option 8C is used to handle disjoint-
+subclasses by including a single type or  
+discriminating attribute.
+v Potential for generating many NULL values if 
+many specific attributes exist in the 
+subclasses
+Step 8: Options for Mapping of 
+Specialization or Generalization
+
+
+--- DB_Lecture-12.pdf | Page 9 ---
+12.9
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Option 8c Example
+
+
+--- DB_Lecture-12.pdf | Page 10 ---
+12.10
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Option 8c Example Cont’d
+Subclass 
+secretary
+Subclass 
+engineer
+Subclass 
+technician
+
+
+--- DB_Lecture-12.pdf | Page 11 ---
+12.11
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+v Option 8D: Single relation with multiple type 
+attributes.
+v Option 8D is mainly used to handle 
+overlapping subclasses.
+Step 8: Options for Mapping of 
+Specialization or Generalization
+
+
+--- DB_Lecture-12.pdf | Page 12 ---
+12.12
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Option 8d Example
+
+
+--- DB_Lecture-12.pdf | Page 13 ---
+12.13
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Option 8d Example Cont’d
+Subclass 
+Manufacture part
+Subclass 
+Purchased part
+Boolean (True or False), (Yes or No) is set for Mflag and 
+Pflag 
+
+
+--- DB_Lecture-12.pdf | Page 14 ---
+12.14
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Exercise (1)
+Mapping supertype/subtype relationships to relations 
+using Multiple relations—superclass and subclasses 
+
+
+--- DB_Lecture-12.pdf | Page 15 ---
+12.15
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Answer
+
+
+--- DB_Lecture-12.pdf | Page 16 ---
+12.16
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Exercise (2)
+Convert the following EERD into relations. 
+INSTRUCTOR
+Instructor_ID
+Name
+{Address}
+Instructor_Type
+Full_Time
+Salary 
+d
+Part_Time
+Hours
+Hr_Rate
+INSTITUTION 
+Ins_ID
+Title
+Work
+ in
+‘P’
+‘F’
+
+
+--- DB_Lecture-12.pdf | Page 17 ---
+12.17
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Answer
+Instructor_ID
+Name
+C
+Instructor_Type
+Instructor
+Address
+Instructor_ID
+Instructor_Address
+Instructor_ID
+Ins_ID
+C Title
+Institution 
+Salary
+F_Instructor_ID
+Full_Time
+Hours
+P_Instructor_ID
+Part_Time
+Hr_Rate
+
+
+--- DB_Lecture-12.pdf | Page 18 ---
+12.18
+© 2018 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+
+========================================
+FILE: DB_Lecture-2.pdf (Pages: 12)
+========================================
+
+--- DB_Lecture-2.pdf | Page 1 ---
+10/9/2024
+1
+2.1
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Lecture 2
+Fundamental Database Concepts
+2.2
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Lecture objectives
+1. Database Users and Roles
+2. Transactions
+1
+2
+
+
+--- DB_Lecture-2.pdf | Page 2 ---
+10/9/2024
+2
+2.3
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+1. DBMS Roles
+❖Actors On the Scene 
+ 
+(people interested in the actual data):
+1) Database administrators
+2) Database designers
+3) Systems analysts and application 
+programmers
+4) End users
+2.4
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Actors on the Scene
+1) Database Administrators
+❖Acquiring a DBMS.
+❖Acquiring HW and SW to support the DBMS.
+❖Managing the system (coordinating and 
+monitoring its use).
+❖Authorizing access (security policies).
+❖Managing staff, including DB designers.
+3
+4
+
+
+--- DB_Lecture-2.pdf | Page 3 ---
+10/9/2024
+3
+2.5
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Actors on the Scene
+2) Database Designers
+❖Identifying the information of interested 
+in the system.
+❖Designing the database conceptual schema.
+❖Designing views for particular users.
+❖Designing the physical data layout and logical 
+schema.
+❖Adjusting data parameters for performance.
+2.6
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Actors on the Scene
+3) Systems Analysts and Application  
+    Programmers
+❖System analysts: Determine requirements of 
+end users.
+❖Application programmers: Implement the 
+specifications as programs; then they test, 
+debug, document, and maintain the 
+transactions.
+❖Such analysts and programmers—
+commonly referred to as software 
+developers (generic database developers) 
+or software engineers.
+5
+6
+
+
+--- DB_Lecture-2.pdf | Page 4 ---
+10/9/2024
+4
+2.7
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Actors on the Scene
+4) End Users: People whose jobs require access to the  
+    database for querying, updating, and generating  
+    reports
+❖Casual users: need different information each time
+❖Naïve or parametric users: using standard types 
+of queries and updates called “canned transactions” 
+that have been carefully programmed and tested
+❖Sophisticated users: people who understand the 
+system and the data and use it in many novel ways
+❖Standalone users: people who use personal easy-
+to-use databases (ready-made program packages) 
+for personal data.
+2.8
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+DBMS Roles
+users of
+the data
+application
+program(s)
+application
+program(s)
+application
+program(s)
+application
+program(s)
+data
+data
+dictionary
+data
+definition
+processor
+query processor
+security manager
+concurrency manager
+index manager
+database
+designer
+application developers
+system
+administrator
+(and DB 
+designer)
+DBMS
+system
+developers
+7
+8
+
+
+--- DB_Lecture-2.pdf | Page 5 ---
+10/9/2024
+5
+2.9
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+1. DBMS Roles
+❖Actors Behind the Scene: 
+    people who maintain the environment 
+    but aren't interested in the actual data.
+1) DBMS designers and implementers.
+2) Tools developers.
+3) Operators and maintenance personnel.
+4) Database researchers.
+2.10
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Actors Behind the Scene
+1) DBMS designers and implementers
+❖Work for the company that supplies the DBMS 
+(i.e. Microsoft , Oracle, Sybase, MySQL …)
+❖Programmers and engineers
+❖Design and implement the DBMS
+9
+10
+
+
+--- DB_Lecture-2.pdf | Page 6 ---
+10/9/2024
+6
+2.11
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Actors Behind the Scene
+2) Tools Developers
+❖Design and implement DBMS. 
+❖Kinds of tools: database design aids, 
+performance monitoring tools, user and 
+designer interfaces.
+2.12
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Actors Behind the Scene
+3) Operators and maintenance personnel
+❖Run and maintain the computer environment 
+in which a DBMS operates.
+❖Probably work for the database administrator 
+(DBA).
+11
+12
+
+
+--- DB_Lecture-2.pdf | Page 7 ---
+10/9/2024
+7
+2.13
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Actors Behind the Scene
+4) Database Researchers
+❖Academic or industrial researchers.
+❖Develop new theory, new designs, new data 
+models and new algorithms to improve future 
+database management systems.
+2.14
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+2.Transactions
+❖transaction = an indivisible unit of data  
+                        processing 
+❖All transactions must have the ACID properties:
+1)
+Atomicity: all or nothing.
+2)
+Consistency: no constraint violations.
+3)
+Isolation: no interference from other  
+                      concurrent transactions.
+4)
+Durability: committed changes must not be 
+                        lost due to any kind of failure.
+13
+14
+
+
+--- DB_Lecture-2.pdf | Page 8 ---
+10/9/2024
+8
+2.15
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+❖Aly wants to move $200 from his savings  
+   account to his checking account.
+1) Money must be subtracted from savings account.
+2) Money must be added to checking count.
+If both happen, Aly and the bank are both happy.
+If neither happens, Aly and the bank are both happy.
+If only one happens, either Aly or the bank will be unhappy.
+1) Atomic Transactions
+Aly’s transfer must be all or nothing.
+2.16
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Transactions are Atomic
+❖Transactions must be atomic (indivisible)
+❖The DBMS must ensure atomicity
+❖Everything happens, or nothing happens
+❖Boundaries of transaction (in time) 
+are generally set by the application …
+❖The DBMS has no means of determining 
+the intention of a transaction
+15
+16
+
+
+--- DB_Lecture-2.pdf | Page 9 ---
+10/9/2024
+9
+2.17
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+2) Consistent Transactions
+❖Mona tries to withdraw $1000 from account 387.
+constraint:
+account.Balance must be non-negative
+any transaction withdrawing
+more than $652.55 from acct 387
+will violate this constraint
+No
+PIN
+Balance
+Accounts
+101
+8965 10965.78
+387
+6643
+652.55
+543
+4287
+8720.12
+Mona’s transaction cannot be accepted.
+2.18
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Transactions are Consistent
+❖A transaction must leave the database 
+    in an valid or consistent state.
+❖valid state == no constraint violations
+❖A constraint is a declared rule defining  
+specifying database states. 
+❖Constraints may be violated temporarily … 
+    but must be corrected before the transaction 
+ completes.
+17
+18
+
+
+--- DB_Lecture-2.pdf | Page 10 ---
+10/9/2024
+10
+2.19
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+3) Concurrent Transactions
+❖Aly is withdrawing $500 from account 543.
+❖Mona’s employer is depositing $1983.23 to account 543.
+❖These transactions are happening at the same time. 
+No
+PIN
+Balance
+Accounts
+101
+8965 10965.78
+387
+6643
+652.55
+543
+4287
+8720.12
+No
+PIN
+Balance
+Accounts
+101
+8965 10965.78
+387
+6643
+652.55
+543
+4287
+10203.35
+Combined result of both transactions must be correct
+2.20
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Transactions are Isolated
+❖If two transactions occur at the same time, 
+    the cumulative effect must be the same  
+as if they had been done in isolation
+❖($8720.12 - $500) + $1983.23 = $10203.35 
+❖($8720.12 + $1983.23) - $500 = $10203.35
+ 
+❖Ensuring isolation is the task of 
+concurrency control
+19
+20
+
+
+--- DB_Lecture-2.pdf | Page 11 ---
+10/9/2024
+11
+2.21
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+4) Durable Transactions
+❖Mona deposits $50,000 to account 387.Later, the bank’s   
+computer crashes due to a lightning storm.
+No
+PIN
+Balance
+Accounts
+101
+8965 10965.78
+387
+6643
+652.55
+543
+4287
+8720.12
+No
+PIN
+Balance
+Accounts
+101
+8965 10965.78
+387
+6643 50652.55
+543
+4287
+8720.12
+Mona’s deposit cannot be lost.
+2.22
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Transactions are Durable
+❖Once a transaction's effect on the 
+database state has been committed, it 
+must be permanent
+❖The DBMS must ensure persistence, 
+    even in the event of system failures
+❖Sources of failure:
+❖Computer or operating system crash 
+❖disk failure
+❖power outage, operator errors, …
+21
+22
+
+
+--- DB_Lecture-2.pdf | Page 12 ---
+10/9/2024
+12
+2.23
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+23
+
+
+========================================
+FILE: DB_Lecture-3.pdf (Pages: 22)
+========================================
+
+--- DB_Lecture-3.pdf | Page 1 ---
+3.1
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-3.pdf | Page 2 ---
+3.2
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Lecture objectives
+1. Data Models, Schemas, and Instances
+2. Three-Schema Architecture and Data 
+Independence
+
+
+--- DB_Lecture-3.pdf | Page 3 ---
+3.3
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+1. Data Models, Schemas, and Instances
+v Data abstraction 
+v Suppression of details of data organization 
+and storage.
+v Highlighting of the essential features for an 
+improved understanding of data.
+v Different users can perceive data at their 
+preferred level of detail.
+
+
+--- DB_Lecture-3.pdf | Page 4 ---
+3.4
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Data Models, Schemas, and Instances 
+(cont'd.)
+v Data model
+v Collection of concepts that describe the 
+structure of a database (data types, 
+relationships, constraints) 
+v Provides means to achieve data abstraction
+v Basic operations 
+• Specify retrievals and updates on the database
+
+
+--- DB_Lecture-3.pdf | Page 5 ---
+3.5
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Categories of Data Models
+v Data Models categorize according to the types of 
+concepts they use to describe the database structure
+v High-level or conceptual data models 
+v Close to the way many users perceive data.
+v Low-level or physical data models 
+v Describe the details of how data is stored on 
+computer storage media (Hard Disk).
+v Representational data models
+v Easily understood by end users 
+v Similar to how data organized in computer storage
+
+
+--- DB_Lecture-3.pdf | Page 6 ---
+3.6
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Categories of Data Models (cont'd.)
+v Entity 
+v Represents a real-world object or concept 
+v Attribute
+v Represents some property of interest 
+v Further describes an entity
+v Relationship among two or more entities 
+v Represents an association among the entities
+v Entity-Relationship model
+Conceptual data models
+
+
+--- DB_Lecture-3.pdf | Page 7 ---
+3.7
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Entity-Relationship model
+EMPLOYEE
+Phone
+EID
+Name
+WorksOn
+PROJECT
+Budget
+Name
+StartDate
+
+
+--- DB_Lecture-3.pdf | Page 8 ---
+3.8
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Categories of Data Models (cont'd.)
+v Representational or implementation 
+data models
+v Used most frequently in traditional 
+commercial DBMSs
+v These include the widely used relational data 
+model
+v the network and hierarchical models that 
+have been widely used in the past
+
+
+--- DB_Lecture-3.pdf | Page 9 ---
+3.9
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Relational data model
+
+
+--- DB_Lecture-3.pdf | Page 10 ---
+3.10
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Categories of Data Models (cont'd.)
+v Physical data models 
+v Describe how data is stored as files in the 
+computer 
+v typically only of interest to database 
+designers, implementers and maintainers 
+…not end users
+v Access path 
+• Structure that makes the search for particular 
+database records efficient
+v Index 
+• Example of an access path 
+• Allows direct access to data using an index term or 
+a keyword
+
+
+--- DB_Lecture-3.pdf | Page 11 ---
+3.11
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Schemas, Instances, and Database State
+v Database schema
+v Description of a database
+v Schema diagram
+v Displays selected aspects of schema
+v Schema construct
+v Each object in the schema
+v Database state or snapshot
+v Data in database at a particular moment in time
+v It is also called the current set of occurrences 
+or instances in the database
+
+
+--- DB_Lecture-3.pdf | Page 12 ---
+3.12
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Schemas, Instances, and Database State 
+(cont'd.)
+Schema diagram
+ for the database
+The diagram displays the structure of each record type 
+but not the actual instances of records
+
+
+--- DB_Lecture-3.pdf | Page 13 ---
+3.13
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+2. Three-Schema Architecture and Data 
+Independence
+v The goal of the three-schema architecture is to separate 
+the user applications from the physical database.
+v Internal level 
+v Describes physical storage structure of the database. 
+v Conceptual level
+v Describes structure of the whole database for a community of 
+users (entities, data types, relationships, user operations, and 
+constraints). 
+v External or view level
+v includes a number of external schemas or user views
+v Describes part of the database that a particular user group is 
+interested in.
+
+
+--- DB_Lecture-3.pdf | Page 14 ---
+3.14
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Three-Schema Architecture
+and Data Independence (cont'd.)
+
+
+--- DB_Lecture-3.pdf | Page 15 ---
+3.15
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Mapping the Data Models to the Three-
+Schema Architecture
+High-level  
+Conceptual 
+data models
+ERD 
+Low-level  
+Physical
+data models
+Representational 
+data models
+Relational 
+data models
+Internal 
+level/schema 
+Conceptual 
+level/schema 
+External
+level/view 
+
+
+--- DB_Lecture-3.pdf | Page 16 ---
+3.16
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Three-Schema Architecture
+and Data Independence (cont'd.)
+
+
+--- DB_Lecture-3.pdf | Page 17 ---
+3.17
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Three-Schema Architecture
+and Data Independence (cont'd.)
+generic view
+physical view
+Low level
+use 
+representational 
+data model
+use 
+physical 
+data model
+Implemented using a 
+representational data 
+model
+
+
+--- DB_Lecture-3.pdf | Page 18 ---
+3.18
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Data Independence
+v Capacity to change the schema at one level 
+of a database system without having to 
+change the schema at the next higher level.
+Logical the capacity to change the conceptual 
+schema without having to change external 
+schemas or application programs. 
+For example, we may change the conceptual 
+schema to expand the database (by adding a 
+record type or data item), to change 
+constraints, or to reduce the database (by 
+removing a record type or data item).
+
+
+--- DB_Lecture-3.pdf | Page 19 ---
+3.19
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Data Independence (cont'd.)
+
+
+--- DB_Lecture-3.pdf | Page 20 ---
+3.20
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Data Independence (cont'd.)
+Physical the capacity to change the internal 
+schema without having to change the 
+conceptual schema. 
+by creating additional access structures—to 
+improve the performance of retrieval or update. If 
+the same data as before remains in the 
+database, we should not have to change the 
+conceptual schema.
+For example, providing an access path to improve 
+retrieval speed of section records.
+
+
+--- DB_Lecture-3.pdf | Page 21 ---
+3.21
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Data Independence (summary)
+vlogical data independence
+v ensures that changes to the conceptual 
+schema don't affect the external views
+v This is not always achievable.
+vphysical data independence
+v conceptual and external schema are defined 
+in terms of the data model, rather than the 
+actual data layout.
+v ensures that conceptual and external 
+schemas are not affected by changes to the 
+physical data layout.
+
+
+--- DB_Lecture-3.pdf | Page 22 ---
+3.22
+© 2023 by Dr. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+
+========================================
+FILE: DB_Lecture-4.pdf (Pages: 26)
+========================================
+
+--- DB_Lecture-4.pdf | Page 1 ---
+4.1
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-4.pdf | Page 2 ---
+4.2
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Lecture objectives
+1. Database Development Process.
+2. Using High-Level Conceptual Data 
+Models for Database Design.
+3. ER Model Concepts (Entities, 
+Attributes, and Keys).
+4. A Sample Database Application.
+
+
+--- DB_Lecture-4.pdf | Page 3 ---
+4.3
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. Database
+Development
+Process
+Nontechnical 
+User
+DFD
+Sequence
+……..
+Application Programs
+
+
+--- DB_Lecture-4.pdf | Page 4 ---
+4.4
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+2. Using High-Level Conceptual Data 
+Models for Database Design
+v Requirements collection and analysis
+v Database designers interview prospective 
+database users to understand and document 
+data requirements
+v Result: data requirements
+v Functional requirements of the application
+
+
+--- DB_Lecture-4.pdf | Page 5 ---
+4.5
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Using High-Level Conceptual Data 
+Models (cont’d.)
+v Conceptual schema 
+v Conceptual design.
+v Description of data requirements.
+v Includes detailed descriptions of the entity 
+types, relationships, and constraints.
+v Transformed from high-level data model into 
+implementation data model.
+
+
+--- DB_Lecture-4.pdf | Page 6 ---
+4.6
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Using High-Level Conceptual Data 
+Models (cont’d.)
+v Logical design or data model mapping
+v Result is a database schema in 
+implementation data model of DBMS.
+v Physical design phase
+v Internal storage structures, file organizations, 
+indexes, access paths, and physical design 
+parameters for the database files specified.
+
+
+--- DB_Lecture-4.pdf | Page 7 ---
+4.7
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+3. ER Model Concepts
+v ER model describes data as: 
+v Entities
+v Attributes
+v Relationships
+
+
+--- DB_Lecture-4.pdf | Page 8 ---
+4.8
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Entities
+is a thing in the real world with an 
+    independent existence 
+v An entity may be a person, a place, an object, an 
+    event, or a concept in the user environment 
+    about which the organization wishes to
+    maintain data
+v An object with a physical existence (person, car, 
+employee).
+v An object with a conceptual existence (a job, or 
+a university course).
+
+
+--- DB_Lecture-4.pdf | Page 9 ---
+4.9
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+An Entity…
+v An object that will have many instances in the 
+    database.
+v An object that will be composed of multiple 
+    attributes.
+v An object that we are trying to model
+v A user of the database system 
+v An output of the database system (e.g. a report)
+
+
+--- DB_Lecture-4.pdf | Page 10 ---
+4.10
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Entities
+
+
+--- DB_Lecture-4.pdf | Page 11 ---
+4.11
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Strong vs. Weak Entities
+
+
+--- DB_Lecture-4.pdf | Page 12 ---
+4.12
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example of a weak identity and its 
+identifying relationship
+EMPLOYEE
+Phone
+EID
+Name
+DEPENDENT
+Age
+Name
+DependentOf
+
+
+--- DB_Lecture-4.pdf | Page 13 ---
+4.13
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Attributes
+
+
+--- DB_Lecture-4.pdf | Page 14 ---
+4.14
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Attributes
+
+
+--- DB_Lecture-4.pdf | Page 15 ---
+4.15
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1) Required vs. Optional Attributes
+v Required: must have a value for every entity 
+(or relationship) instance with which it is 
+associated, e.g. Student ID
+v Optional: may not have a value for every 
+entity (or relationship) instance with which it is 
+associated, e.g. Student Major
+
+
+--- DB_Lecture-4.pdf | Page 16 ---
+4.16
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+2) Simple vs. Composite Attributes
+v Attributes that are not divisible are called simple 
+    or atomic attributes, e.g. Sex
+The address is 
+broken into 
+component parts
+
+
+--- DB_Lecture-4.pdf | Page 17 ---
+4.17
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+3) Single-Valued versus Multi-valued 
+Attribute
+v Single: must have a single value, e.g. 
+Employee’s Marital status
+v Multi-valued: may take on more than one 
+value for a given entity (or relationship) instance, 
+e.g. an employee can have more than one skill
+v Question: which type of attributes represent 
+“College degrees” single or multi-valued     
+     attribute? 
+
+
+--- DB_Lecture-4.pdf | Page 18 ---
+4.18
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+4) Stored versus Derived Attributes
+v Stored: a value must be physically stored in 
+the database, .e.g. birthdate
+v Derived: values can be calculated from related 
+attribute values (not physically stored in the 
+database), e.g. years employed for employees 
+could be calculated from date employed and 
+current date
+
+
+--- DB_Lecture-4.pdf | Page 19 ---
+4.19
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+5) Complex Attribute
+v Complex: composite and multivalued attributes. 
+Composite attribute between parentheses () and 
+separating the components with commas, and by 
+displaying multi-valued attributes between braces { }
+v Example
+{Address_phone
+( {Phone(Area_code,Phone_number)},
+Address(Street_address(Number,Street, 
+Apartment_number),City,State,Zip) )}
+
+
+--- DB_Lecture-4.pdf | Page 20 ---
+4.20
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+6) Identifier (key) Attributes
+v Key or uniqueness constraint 
+v Attributes whose values are distinct for each 
+individual entity in entity set.
+v Key attribute: Uniqueness property must 
+hold for every entity set of the entity type, e.g. 
+Student ID.
+vKey attribute : Cannot be Null.
+vKey attribute may be more than one 
+attribute, e.g. “Project ID” and “Employee ID”.
+v If the entity does not have key attributes of their 
+own, it will called “Weak entity”
+ 
+
+
+--- DB_Lecture-4.pdf | Page 21 ---
+4.21
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Notation Summary
+
+
+--- DB_Lecture-4.pdf | Page 22 ---
+4.22
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+v An entity type EMPLOYEE with attributes Name, 
+Ssn, Sex, Address, Salary, Birth_date, 
+Department, Age, and Supervisor. Both Name 
+and Address may be composite attributes. Each 
+employee works on more than one project with 
+different hours.
+v An entity type DEPENDENT with attributes 
+Employee, Dependent_name, Sex, Birth_date, 
+and Relationship (to the employee).
+4.Initial Conceptual Design of the 
+COMPANY Database
+
+
+--- DB_Lecture-4.pdf | Page 23 ---
+4.23
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Initial Conceptual Design of the 
+COMPANY Database
+Age
+
+
+--- DB_Lecture-4.pdf | Page 24 ---
+4.24
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Initial Conceptual Design of the 
+COMPANY Database
+v An entity type DEPARTMENT with attributes Name, 
+Number, Locations, Manager, and Manager_start_date. 
+Department may be found in more than one Location. 
+Name and Number are specified to be unique.
+
+
+--- DB_Lecture-4.pdf | Page 25 ---
+4.25
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Initial Conceptual Design of the 
+COMPANY Database
+v An entity type DEPARTMENT with attributes Name, 
+Number, Locations, Manager, and Manager_start_date. 
+Department may be found in more than one Location. 
+Name and Number are specified to be unique.
+
+
+--- DB_Lecture-4.pdf | Page 26 ---
+4.26
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+
+========================================
+FILE: DB_Lecture-5 (1).pdf (Pages: 38)
+========================================
+
+--- DB_Lecture-5 (1).pdf | Page 1 ---
+5.1
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-5 (1).pdf | Page 2 ---
+5.2
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Lecture objectives
+1. Relationship Degree, Role names and 
+Recursive Relationships
+2. Cardinality of Relationships.
+3. Constraints on Relationships.
+4. Refining the ER Design for the COMPANY 
+Database
+
+
+--- DB_Lecture-5 (1).pdf | Page 3 ---
+5.3
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. Relationships
+v Relationships indicate a meaningful 
+connection between two entity types.
+v Relationships may have attributes, but they 
+cannot have key attributes. 
+v Verbs indicate names of relationship types
+v Relationship:
+v When an attribute of one entity type 
+refers to another entity type
+v Represent references as relationships 
+not attributes
+
+
+--- DB_Lecture-5 (1).pdf | Page 4 ---
+5.4
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example Schema “1”
+
+
+--- DB_Lecture-5 (1).pdf | Page 5 ---
+5.5
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example Schema “1”
+
+
+--- DB_Lecture-5 (1).pdf | Page 6 ---
+5.6
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example Schema “1”
+WorksFor
+
+
+--- DB_Lecture-5 (1).pdf | Page 7 ---
+5.7
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example Schema “1”
+WorksFor
+
+
+--- DB_Lecture-5 (1).pdf | Page 8 ---
+5.8
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example Schema “1”
+WorksFor
+Manages
+
+
+--- DB_Lecture-5 (1).pdf | Page 9 ---
+5.9
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example Schema “1”
+WorksFor
+Manages
+
+
+--- DB_Lecture-5 (1).pdf | Page 10 ---
+5.10
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Example Schema “2”
+EMPLOYEE
+Phone
+EID
+Name
+DEPENDENT
+Age
+Name
+WorksOn
+DependentOf
+PROJECT
+Budget
+Name
+StartDate
+Hours
+
+
+--- DB_Lecture-5 (1).pdf | Page 11 ---
+5.11
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Relationship Degree
+v Degree of a relationship type i
+v Unary Relationship
+v Binary Relationship (relationship type of 
+degree two) 
+v Ternary Relationship (relationship type of 
+degree three) 
+
+
+--- DB_Lecture-5 (1).pdf | Page 12 ---
+5.12
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Unary Relationship (Recursive 
+Relationships)
+EMPLOYEE
+Supervision
+supervisor
+supervisee
+
+
+--- DB_Lecture-5 (1).pdf | Page 13 ---
+5.13
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Unary Relationship (Recursive 
+Relationships)
+
+
+--- DB_Lecture-5 (1).pdf | Page 14 ---
+5.14
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Role Names and Recursive 
+Relationships
+v Role names
+v Role name signifies role that a participating 
+entity plays in each relationship instance
+v Recursive relationships
+v Same entity type participates more than once 
+in a relationship type in different roles
+v Must specify role name
+
+
+--- DB_Lecture-5 (1).pdf | Page 15 ---
+5.15
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Binary Relationship
+Think of a binary relationship type in terms of attributes
+
+
+--- DB_Lecture-5 (1).pdf | Page 16 ---
+5.16
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Ternary Relationship
+
+
+--- DB_Lecture-5 (1).pdf | Page 17 ---
+5.17
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+v Some database design tools permit only 
+binary relationships
+v Ternary relationship must be represented as a 
+weak entity type
+v No partial key and three identifying relationships
+v Represent ternary relationship as a regular 
+entity type 
+v By introducing an artificial or surrogate key
+Ternary Relationship
+
+
+--- DB_Lecture-5 (1).pdf | Page 18 ---
+5.18
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Ternary Relationship 
+
+
+--- DB_Lecture-5 (1).pdf | Page 19 ---
+5.19
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Ternary Relationship 
+
+
+--- DB_Lecture-5 (1).pdf | Page 20 ---
+5.20
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Ternary Relationship 
+What is a key for 
+“Supply” entity?
+
+
+--- DB_Lecture-5 (1).pdf | Page 21 ---
+5.21
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Ternary Relationship example
+
+
+--- DB_Lecture-5 (1).pdf | Page 22 ---
+5.22
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+2. Cardinality of Relationships
+22
+
+
+--- DB_Lecture-5 (1).pdf | Page 23 ---
+5.23
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Cardinality Ratios
+v Cardinality ratios specify the maximum number of 
+relationship instances that an entity may participate in
+1:1 ratio
+President
+Country
+1
+1
+WorksFor
+n:1 ratio
+EMPLOYEE
+DEPARTMENT
+n
+1
+WorksOn
+n:m ratio
+EMPLOYEE
+PROJECT
+n
+m
+Governs
+
+
+--- DB_Lecture-5 (1).pdf | Page 24 ---
+5.24
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Describe the Cardinality Ratios?
+Apartment
+Employee
+Employee
+Dependent
+Employee
+Parking
+Department
+Project
+Student
+Course
+Employee
+Department
+Manages
+Registers
+Controls
+Dependents of
+Assigns to
+Assigns to
+
+
+--- DB_Lecture-5 (1).pdf | Page 25 ---
+5.25
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+3. Constraints on Relationships
+v Participation and cardinality define 
+constraints on relationships 
+vParticipation indicates whether an entity 
+    is required to take part in a relationship
+vTotal participation
+v indicates required participation (mandatory)
+vPartial participation
+v indicates optional participation (optional)
+
+
+--- DB_Lecture-5 (1).pdf | Page 26 ---
+5.26
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Participation Constraints
+WorksFor
+Total Participation
+EMPLOYEE
+DEPARTMENT
+WorksOn
+Partial 
+Participation
+EMPLOYEE
+PROJECT
+Manages
+EMPLOYEE
+DEPARTMENT
+1
+1
+n
+m
+n
+1
+
+
+--- DB_Lecture-5 (1).pdf | Page 27 ---
+5.27
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Weak Entity Types
+v Do not have key attributes of their own
+v Identified by being related to specific entities 
+from another entity type
+v Identifying relationship
+v Relates a weak entity type to its owner 
+v Always has a total participation constraint
+
+
+--- DB_Lecture-5 (1).pdf | Page 28 ---
+5.28
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Structure Constraints
+v Specify structural constraints on 
+relationships
+v Replaces cardinality ratio (1:1, 1:N, M:N) and 
+single/double line notation for participation 
+constraints
+v Associate a pair of integer numbers (min, 
+max) with each participation of an entity type 
+E in a relationship type R, where 0 ≤ min ≤ 
+max and max ≥ 1
+
+
+--- DB_Lecture-5 (1).pdf | Page 29 ---
+5.29
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Structural Constraints
+vStructural constraints specify the minimum and
+    maximum number of relationship instances 
+    that an entity may participate in
+WorksFor
+An employee must work for exactly 1 department.
+A department must have at least 4 employees.
+EMPLOYEE
+DEPARTMENT
+(1,1)
+(4,n)
+Manages
+An employee may manage at most 1 department.
+A department must have exactly 1 manager.
+EMPLOYEE
+DEPARTMENT
+(0,1)
+(1,1)
+
+
+--- DB_Lecture-5 (1).pdf | Page 30 ---
+5.30
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Relationship Instances
+WorksFor
+EMPLOYEE
+DEPARTMENT
+(1,1)
+(1,n)
+Each EMPLOYEE 
+instance is connected to 
+exactly one 
+WORKS_FOR instance.
+Each DEPARTMENT 
+instance is connected to 
+at least one 
+WORKS_FOR instance.
+
+
+--- DB_Lecture-5 (1).pdf | Page 31 ---
+5.31
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Questions?
+Q1. At least two professors must be 
+qualified to teach each course. Each 
+professor must be qualified to teach at 
+least one course.
+
+
+--- DB_Lecture-5 (1).pdf | Page 32 ---
+5.32
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Questions?
+Q2. A patient must have recorded at least 
+one history, and can have many
+
+
+--- DB_Lecture-5 (1).pdf | Page 33 ---
+5.33
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+4. Refining the ER Design for the 
+COMPANY Database
+v Change attributes that represent 
+relationships into relationship types
+v Determine cardinality ratio and 
+participation constraint of each 
+relationship type
+
+
+--- DB_Lecture-5 (1).pdf | Page 34 ---
+5.34
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Notation Summary
+
+
+--- DB_Lecture-5 (1).pdf | Page 35 ---
+5.35
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-5 (1).pdf | Page 36 ---
+5.36
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-5 (1).pdf | Page 37 ---
+5.37
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Design an ER schema for the following 
+enterprise:
+
+
+--- DB_Lecture-5 (1).pdf | Page 38 ---
+5.38
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+
+========================================
+FILE: DB_Lecture-6 (1).pdf (Pages: 9)
+========================================
+
+--- DB_Lecture-6 (1).pdf | Page 1 ---
+6.1
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-6 (1).pdf | Page 2 ---
+6.2
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Exercise (1): Design an ER schema for the 
+following enterprise:
+Consider a MAIL_ORDER database in which employees take orders 
+for parts from customers. The data requirements are summarized 
+as follows:
+■ The mail order company has employees, each identified by a 
+unique employee number, first and last name, and Zip Code.
+■ Each customer of the company is identified by a unique customer 
+number, first and last name, and Zip Code.
+■ Each part sold by the company is identified by a unique part 
+number, a part name, price, and quantity in stock.
+■ Each order placed by a customer is taken by an employee and is 
+given a unique order number. Each order contains specified 
+quantities of one or more parts. Each order has a date of receipt as 
+well as an expected ship date. The actual ship date is also recorded.
+
+
+--- DB_Lecture-6 (1).pdf | Page 3 ---
+6.3
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Exercise (2)
+Consider the following set of requirements for a UNIVERSITY 
+database that is used to keep track of students' transcripts
+(a) The university keeps track of each student's name, 
+student number, social security number, current address and 
+phone, permanent address and phone, birthdate, sex, class 
+(freshman, sophomore, ..., graduate), major department, 
+minor department (if any), and degree program (B.A., B.S., ..., 
+Ph.D.). Some user applications need to refer to the city, state, 
+and zip of the student's current address, and to the student's 
+last name. Both social security number and student number 
+have unique values for each student.
+(b) Each department is described by a name, department 
+code, office number, office phone, and college, department 
+could be offer courses. Both name and code have unique 
+values for each department.
+ 
+
+
+--- DB_Lecture-6 (1).pdf | Page 4 ---
+6.4
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+(c) Each course has a course name, description, course number, 
+number of semester hours, level, and offering department. The 
+value of course number is unique for each course.
+d) Each section has an instructor, semester, year, course, and 
+section number. The section number distinguishes different 
+sections of the same course that are taught during the same 
+semester/year; its values are 1, 2, 3, ..., up to the number of 
+sections taught during each semester.
+ 
+(e) A grade report has a student, section, letter grade, and 
+numeric grade (0, 1, 2, 3, 4 for F, D, C, B, A, respectively).
+ 
+Design an ER schema for this application, and draw an ER 
+diagram for that schema. Specify key attributes of each entity type 
+and structural constraints on each relationship type. Note any 
+unspecified requirements, and make appropriate assumptions to 
+make the specification complete.
+
+
+--- DB_Lecture-6 (1).pdf | Page 5 ---
+6.5
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Exercise (3)
+Draw an ER schema diagram for courses database and 
+consider the assumptions below. Specify each entity type 
+and structural constraints on each relationship type.
+v A course may or may not use a textbook, but that a text by 
+definition is a book that is used in some course. A course 
+may not use more than five books. 
+v Instructors teach from two to four courses
+v Each course is taught by exactly one instructor.
+v Each textbook is used by one and only one course.
+v An instructor does not have to adopt a textbook for all 
+courses.
+v If a textbook exists, it is used in some course; hence it is 
+adopted by some instructor who teaches that course.
+
+
+--- DB_Lecture-6 (1).pdf | Page 6 ---
+6.6
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Consider a CONFERENCE_REVIEW database in which researchers 
+submit their research papers for consideration. Reviews by reviewers 
+are recorded for use in the paper selection process. The database 
+system caters primarily to reviewers who record answers to evaluation 
+questions for each paper they review and make recommendations 
+regarding whether to accept or reject the paper. The data 
+requirements are summarized as follows:
+■ Authors of papers are uniquely identified by e-mail id. First and last 
+names are also recorded.
+■ Each paper is assigned a unique identifier by the system and is 
+described by a title, abstract, and the name of the electronic file 
+containing the paper.
+■ A paper may have multiple authors, but one of the authors is designated 
+as the contact author.
+■ Reviewers of papers are uniquely identified by e-mail address. Each 
+reviewer’s first name, last name, phone number, affiliation, and topics 
+of interest are also recorded.
+Exercise (4): Design an ER schema for the 
+following Conference Review system:
+
+
+--- DB_Lecture-6 (1).pdf | Page 7 ---
+6.7
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+(1)  The database represents each AIRPORT, keeping its unique 
+Airport Code, the AIRPORT Name, and the City and State in 
+which the AIRPORT is located.
+(2)  Each airline FLIGHT has a unique number, the Airline for the 
+FLIGHT, and the Weekdays on which the FLIGHT is scheduled 
+(for example, every day of the week except Sunday can be 
+coded as X7). FAREs are kept for each FLIGHT, restrictions, 
+code and amount are recorded for each fare.
+(3)  A FLIGHT is composed of one or more FLIGHT LEGs (for 
+example, flight number CO1223 from New York to Los Angeles 
+may have two FLIGHT LEGs: leg 1 from New York to Houston 
+and leg 2 from Houston to Los Angeles). Each FLIGHT LEG 
+has a DEPARTURE AIRPORT and Scheduled Departure Time, 
+and an ARRIVAL AIRPORT and Scheduled Arrival Time.
+Exercise (5): Design an ER schema for the 
+following airline reservations system
+
+
+--- DB_Lecture-6 (1).pdf | Page 8 ---
+6.8
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+(4)  A LEG INSTANCE is an instance of a FLIGHT LEG on a 
+specific Date (for example, CO1223 leg 1 on July 30, 1989). 
+The actual Departure and Arrival AIRPORTs and Times are 
+recorded for each flight leg after the flight leg has been 
+concluded. The Number of available seats and the 
+AIRPLANE used in the LEG INSTANCE are also kept.
+(5)  The customer RESERVATIONs on each LEG INSTANCE 
+include the Customer Name, Phone, and Seat Number(s) 
+for each reservation.
+(6)  Information on AIRPLANEs and AIRPLANE TYPEs are also 
+kept. For each AIRPLANETYPE (for example, DC-10), the 
+TypeName, manufacturing Company, and Maximum 
+Number of Seats are kept. The AIRPORTs in which planes 
+of this type CAN LAND are kept in the database. For each 
+AIRPLANE, the AirplaneId, Total number of seats, and 
+TYPE are kept.
+
+
+--- DB_Lecture-6 (1).pdf | Page 9 ---
+6.9
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+
+========================================
+FILE: DB_Lecture-8.pdf (Pages: 22)
+========================================
+
+--- DB_Lecture-8.pdf | Page 1 ---
+8.1
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-8.pdf | Page 2 ---
+8.2
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Lecture objectives
+1. Design a relational database schema 
+based on a conceptual schema design
+2. Seven-step algorithm to convert the 
+basic ER model constructs into relations
+
+
+--- DB_Lecture-8.pdf | Page 3 ---
+8.3
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+ER Bank Schema
+
+
+--- DB_Lecture-8.pdf | Page 4 ---
+8.4
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 1: Regular Entities
+Regular entity types become relations
+v include all simple attributes 
+v include only components of compound 
+attributes
+v keys become primary keys
+v if multiple keys (candidates) select a primary 
+key
+CUSTOMER(Ssn, Name, Addr, Phone)
+
+
+--- DB_Lecture-8.pdf | Page 5 ---
+8.5
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 1: Regular Entities
+ACCOUNT(Acct_no, Type, Balance)
+LOAN(Loan_no, Type, Amount)
+BANK(Code, Name, Addr)
+
+
+--- DB_Lecture-8.pdf | Page 6 ---
+8.6
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 2: Weak Entities
+Weak entity types become relations
+v include all simple attributes 
+v include only components of compound attributes
+v create a primary key from partial key and key of 
+owning entity type (through identifying relationship)
+
+
+--- DB_Lecture-8.pdf | Page 7 ---
+8.7
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 2: Weak Entities
+Weak entity types become relations
+BANK_BRANCH(Bank_code, Branch_No, Addr)
+BANK(Code, Name, Addr)
+
+
+--- DB_Lecture-8.pdf | Page 8 ---
+8.8
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 3: Binary 1:1 Relationships
+vApproach 1: Foreign Key 
+v Chose one of the related entity types to hold the 
+relationship (chose one with total participation, if 
+possible)
+v move all relationship attributes to this relation
+vApproach 2: Merged Relation
+v combine the relations for the related entities into a 
+single relation
+v use only when both participations are total
+
+
+--- DB_Lecture-8.pdf | Page 9 ---
+8.9
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 3: Binary 1:1 Relationships
+EMPLOYEE(Ssn, Name, …)
+DEPARTMENT(Name, Number, Mgr, Mgr_start_date)
+Approach 1: Foreign Key 
+
+
+--- DB_Lecture-8.pdf | Page 10 ---
+8.10
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 3: Binary 1:1 Relationships
+Approach 2: Merged Relation
+AJB(x, y, p, q, r)
+OR
+AJB(x, y, p, q, r)
+
+
+--- DB_Lecture-8.pdf | Page 11 ---
+8.11
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 4: Binary 1:N Relationships
+1:N Relationships become foreign key at N side
+v any relationship attributes also go to N side
+LOAN(Loan_no, Type, Amount, 
+     Bank, Branch)
+BANK_BRANCH(Bank_code, Branch_No, 
+            Addr)
+
+
+--- DB_Lecture-8.pdf | Page 12 ---
+8.12
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 4: Binary 1:N Relationships
+ACCOUNT(Acct_no, Type, Balance, 
+     Bank, Branch)
+BANK_BRANCH(Bank_code, Branch_No, 
+            Addr)
+
+
+--- DB_Lecture-8.pdf | Page 13 ---
+8.13
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 5: Binary M:N Relationships
+M:N Relationships must become a new relation
+v contains PKs to both related entities
+v include any simple attributes of M:N relationship type
+A_C(Acct, Cust)
+CUSTOMER(Ssn, Name, Addr, 
+              Phone)
+ACCOUNT(Acct_no, Type, 
+    Balance, Bank, Branch)
+
+
+--- DB_Lecture-8.pdf | Page 14 ---
+8.14
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+CUSTOMER(Ssn, Name, Addr, 
+              Phone)
+Loan(Loan_no, amount,Type, 
+      Bank, Branch)
+L_C(LoanID, Cust)
+Step 5: Binary M:N Relationships
+
+
+--- DB_Lecture-8.pdf | Page 15 ---
+8.15
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 6: Multivalued Attributes
+For each multivalued attribute
+vCreate a new relation
+vPrimary key of R is the combination of A and K
+vIf the multivalued attribute is composite, include its 
+simple components
+DEPT_LOCATIONS(Dno, Location)
+DEPARTMENT(Name, Number, Mgr, 
+Mgr_start_date)
+
+
+--- DB_Lecture-8.pdf | Page 16 ---
+8.16
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Step 7: N-ary Relationships
+Non-Binary Relationships become new relations
+v For each n-ary relationship type R, create a new 
+relation S to represent R
+v Include primary keys of participating entity types
+v Include any simple attributes as attributes 
+SUPPLY(SName, PName, Part, Quantity)
+SUPPLIER(SName)
+PROJECT(Proj_name)
+PART(Part_no)
+
+
+--- DB_Lecture-8.pdf | Page 17 ---
+8.17
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Completed Bank Schema
+CUSTOMER(Ssn, Name, Addr, Phone)
+BANK(Code, Name, Addr)
+ACCOUNT(Acct_no, Type, Balance, Bank, Branch)
+LOAN(Loan_no, Type, Amount, Bank, Branch)
+BANK_BRANCH(Bank_code, Branch_No, Addr)
+A_C(Acct, Cust)
+L_C(LoanID, Cust)
+BANK_BRANCH(Bank_code) refers to BANK
+LOAN(Bank,Branch) refers to BANK_BRANCH
+ACCOUNT(Bank,Branch) refers to BANK_BRANCH
+A_C(Acct) refers to ACCOUNT
+A_C(Cust) refers to CUSTOMER
+L_C(LoanID) refers to LOAN
+L_C(Cust) refers to CUSTOMER
+
+
+--- DB_Lecture-8.pdf | Page 18 ---
+8.18
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. Create relational schema  
+    from the following:
+EXERCISES
+
+
+--- DB_Lecture-8.pdf | Page 19 ---
+8.19
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. Create relational schema  
+    from the following:
+EXERCISES
+
+
+--- DB_Lecture-8.pdf | Page 20 ---
+8.20
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. Create relational schema  
+    from the following:
+EXERCISES
+
+
+--- DB_Lecture-8.pdf | Page 21 ---
+8.21
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+2. Create relational schema from 
+the following:
+
+
+--- DB_Lecture-8.pdf | Page 22 ---
+8.22
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+
+========================================
+FILE: DB_Lecture-9.pdf (Pages: 5)
+========================================
+
+--- DB_Lecture-9.pdf | Page 1 ---
+9.1
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+
+
+--- DB_Lecture-9.pdf | Page 2 ---
+9.2
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+1. Create relational schema from 
+the following:
+
+
+--- DB_Lecture-9.pdf | Page 3 ---
+9.3
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+2. Create 
+relational 
+schema 
+from the 
+following:
+
+
+--- DB_Lecture-9.pdf | Page 4 ---
+9.4
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+3. Reverse engineer this 
+relational schema to find 
+an equivalent ER schema.
+
+
+--- DB_Lecture-9.pdf | Page 5 ---
+9.5
+© 2023 by Prof. Manal  Abdel-Kader Abdel-Fattah 
+Thank you
+
+

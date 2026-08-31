@@ -1158,6 +1158,259 @@
                 tricks: `<div class="content-card"><p>المفتاح الأجنبي المضاف لجدول النتيجة دائماً يعود لـ PK للكيان الأب.</p></div>`
             },
 
+            'lec2': {
+                num: '02',
+                title: 'DBMS Roles & Transactions (ACID)',
+                explain: `
+                    <div class="content-card">
+                        <div class="core-idea-box">
+                            <h3>💡 الفكرة الأساسية</h3>
+                            <p>المحاضرة الثانية تغطي أدوار مستخدمي قاعدة البيانات وخاصية ACID للمعاملات (Transactions).</p>
+                        </div>
+                        <h3>1️⃣ أدوار DBMS - Actors On the Scene</h3>
+                        <p>الأشخاص المهتمون بالبيانات الفعلية:</p>
+                        <ul>
+                            <li><strong>Database Administrators (DBA):</strong> يكتسبون نظام DBMS، يديرون الأذونات والأمان، يشرفون على المصممين.</li>
+                            <li><strong>Database Designers:</strong> يحددون البيانات المطلوبة، يصممون المخطط المفاهيمي والمنطقي والمادي.</li>
+                            <li><strong>Systems Analysts & Programmers:</strong> يحددون متطلبات المستخدمين وينفذون البرامج.</li>
+                            <li><strong>End Users:</strong> Casual (يحتاجون بيانات مختلفة كل مرة) / Naive (يستخدمون queries جاهزة) / Sophisticated (يفهمون النظام) / Standalone (قواعد بيانات شخصية).</li>
+                        </ul>
+                        <h3>2️⃣ Actors Behind the Scene</h3>
+                        <p>لا يهتمون بالبيانات الفعلية لكن يحافظون على البيئة:</p>
+                        <ul>
+                            <li>DBMS designers & implementers (مثل Microsoft, Oracle, MySQL)</li>
+                            <li>Tools developers (أدوات تصميم وأداء)</li>
+                            <li>Operators & maintenance personnel (يديرون بيئة الحاسوب)</li>
+                            <li>Database researchers (بحث أكاديمي وصناعي)</li>
+                        </ul>
+                        <h3>3️⃣ Transactions وخاصية ACID</h3>
+                        <p><strong>Transaction:</strong> وحدة معالجة بيانات لا تتجزأ. يجب أن تحقق ACID:</p>
+                        <ul>
+                            <li><strong>A - Atomicity:</strong> الكل أو لا شيء. إما تنجح العملية كلها أو تُلغى كلها.</li>
+                            <li><strong>C - Consistency:</strong> لا انتهاك للقيود. قاعدة البيانات تبقى في حالة صحيحة.</li>
+                            <li><strong>I - Isolation:</strong> المعاملات المتزامنة لا تتداخل. التأثير المجمع = كأنها نُفذت بشكل منفصل.</li>
+                            <li><strong>D - Durability:</strong> التغييرات المُرسخة (committed) لا تضيع حتى في حالة فشل النظام.</li>
+                        </ul>
+                        <div style="background:rgba(6,182,212,0.1);padding:1rem;border-radius:8px;margin-top:1rem;">
+                            <strong>مثال Atomicity:</strong> علي يحوّل 200 دولار من Savings لـ Checking. يجب أن يحدث الخصم والإضافة معاً أو لا شيء.
+                        </div>
+                    </div>`,
+                summary: `<div class="content-card"><p>المحاضرة 2 تتناول أدوار DBMS (DBA، مصممون، مبرمجون، مستخدمون) وخاصية ACID للمعاملات (Atomicity, Consistency, Isolation, Durability).</p></div>`,
+                practice: `<div class="content-card"><p>سؤال: إذا فشل قرص الحاسوب بعد commit لعملية إيداع - ماذا يحدث وفقاً لـ ACID؟ الجواب: تبقى البيانات (Durability).</p></div>`,
+                tricks: `<div class="content-card"><p>تذكر ACID بترتيب: A=كل أو لا، C=لا انتهاك، I=لا تداخل، D=لا ضياع. كل حرف = ضمان مختلف.</p></div>`
+            },
+
+            'lec3': {
+                num: '03',
+                title: 'Data Models, Schemas & Three-Schema Architecture',
+                explain: `
+                    <div class="content-card">
+                        <div class="core-idea-box">
+                            <h3>💡 الفكرة الأساسية</h3>
+                            <p>المحاضرة الثالثة تغطي نماذج البيانات والمخططات والمثيلات وبنية المخطط الثلاثي واستقلالية البيانات.</p>
+                        </div>
+                        <h3>1️⃣ Data Abstraction</h3>
+                        <p>إخفاء تفاصيل تنظيم البيانات وإبراز الميزات الأساسية. يسمح للمستخدمين برؤية البيانات بمستوى التفصيل المناسب لهم.</p>
+                        <h3>2️⃣ Data Models - أنواع نماذج البيانات</h3>
+                        <ul>
+                            <li><strong>High-level (Conceptual):</strong> قريبة من طريقة رؤية المستخدمين للبيانات - مثل ER Model.</li>
+                            <li><strong>Representational (Implementation):</strong> مفهومة للمستخدمين وقريبة من التخزين - مثل Relational Model.</li>
+                            <li><strong>Low-level (Physical):</strong> تصف كيفية تخزين البيانات على القرص - للمصممين فقط.</li>
+                        </ul>
+                        <h3>3️⃣ Schema vs Instance</h3>
+                        <ul>
+                            <li><strong>Schema:</strong> وصف قاعدة البيانات (الهيكل).</li>
+                            <li><strong>Instance/Snapshot:</strong> البيانات الفعلية في لحظة معينة.</li>
+                        </ul>
+                        <h3>4️⃣ Three-Schema Architecture</h3>
+                        <p>الهدف: فصل تطبيقات المستخدمين عن قاعدة البيانات المادية.</p>
+                        <ul>
+                            <li><strong>External Level (View):</strong> عدة مخططات خارجية/آراء المستخدمين.</li>
+                            <li><strong>Conceptual Level:</strong> يصف هيكل قاعدة البيانات الكاملة (entities, relationships, constraints).</li>
+                            <li><strong>Internal Level:</strong> يصف هيكل التخزين المادي.</li>
+                        </ul>
+                        <h3>5️⃣ Data Independence</h3>
+                        <ul>
+                            <li><strong>Logical:</strong> تغيير المخطط المفاهيمي دون تأثير على المخططات الخارجية.</li>
+                            <li><strong>Physical:</strong> تغيير المخطط الداخلي دون تأثير على المخطط المفاهيمي.</li>
+                        </ul>
+                    </div>`,
+                summary: `<div class="content-card"><p>المحاضرة 3 تتناول نماذج البيانات (مفاهيمية/تمثيلية/مادية)، وبنية المخطط الثلاثي (داخلي/مفاهيمي/خارجي)، واستقلالية البيانات (منطقية ومادية).</p></div>`,
+                practice: `<div class="content-card"><p>سؤال: ما الفرق بين Schema و Instance؟ Schema = الهيكل (لا يتغير كثيراً). Instance = البيانات الفعلية (تتغير باستمرار).</p></div>`,
+                tricks: `<div class="content-card"><p>تذكر: External → Conceptual → Internal. كل تغيير في مستوى أدنى لا يؤثر على المستوى الأعلى (استقلالية البيانات).</p></div>`
+            },
+
+            'lec4': {
+                num: '04',
+                title: 'ER Model: Entities, Attributes & Keys',
+                explain: `
+                    <div class="content-card">
+                        <div class="core-idea-box">
+                            <h3>💡 الفكرة الأساسية</h3>
+                            <p>المحاضرة الرابعة تغطي عملية تطوير قواعد البيانات ومفاهيم نموذج ER (الكيانات والصفات والمفاتيح).</p>
+                        </div>
+                        <h3>1️⃣ Database Development Process</h3>
+                        <p>من المستخدم غير التقني → DFD/Sequence → Application Programs.</p>
+                        <h3>2️⃣ Using High-Level Conceptual Data Models</h3>
+                        <ul>
+                            <li>Requirements collection & analysis → بيانات المتطلبات</li>
+                            <li>Conceptual schema (Conceptual design)</li>
+                            <li>Logical design (Data model mapping)</li>
+                            <li>Physical design (Internal structures, indexes)</li>
+                        </ul>
+                        <h3>3️⃣ ER Model - مفاهيم الكيانات (Entities)</h3>
+                        <p>Entity = شيء في العالم الحقيقي ذو وجود مستقل. يمكن أن يكون:</p>
+                        <ul>
+                            <li>وجود مادي: شخص، سيارة، موظف</li>
+                            <li>وجود مفاهيمي: وظيفة، مقرر دراسي</li>
+                        </ul>
+                        <div style="background:rgba(225,29,72,0.1);padding:1rem;border-radius:8px;margin:1rem 0;">
+                            <strong>Strong vs Weak Entity:</strong> Strong = له مفتاح خاص به. Weak = يُعرَّف عبر علاقته بـ Strong Entity.
+                        </div>
+                        <h3>4️⃣ Attributes - أنواع الصفات</h3>
+                        <ul>
+                            <li><strong>Required vs Optional:</strong> إلزامي (مثل Student ID) أو اختياري (مثل التخصص).</li>
+                            <li><strong>Simple vs Composite:</strong> بسيط (غير قابل للتقسيم مثل Sex) أو مركب (مثل Address = Street + City + Zip).</li>
+                            <li><strong>Single-valued vs Multi-valued:</strong> قيمة واحدة (مثل Marital Status) أو متعددة (مثل Skills).</li>
+                            <li><strong>Stored vs Derived:</strong> مخزون (مثل Birthdate) أو مُشتق (مثل Age = حاضر - Birthdate).</li>
+                            <li><strong>Complex:</strong> مركب + متعدد القيم.</li>
+                        </ul>
+                        <h3>5️⃣ Key Attributes - صفات المفتاح</h3>
+                        <p>قيمها مميزة لكل كيان في مجموعة الكيانات. لا يمكن أن تكون NULL. قد تكون أكثر من صفة واحدة.</p>
+                    </div>`,
+                summary: `<div class="content-card"><p>المحاضرة 4 تتناول عملية تطوير قواعد البيانات ونموذج ER مع الكيانات (قوية/ضعيفة)، أنواع الصفات (بسيطة/مركبة/مفردة/متعددة/مخزونة/مشتقة/معقدة)، وصفات المفتاح.</p></div>`,
+                practice: `<div class="content-card"><p>سؤال: "عمر الموظف" - هل هو Stored أم Derived؟ Derived! لأنه يُحسب من تاريخ الميلاد والتاريخ الحالي.</p></div>`,
+                tricks: `<div class="content-card"><p>تذكر أن صفات المفتاح لها 3 خصائص: 1) فريدة لكل كيان، 2) لا يمكن أن تكون NULL، 3) يمكن أن تكون أكثر من صفة (Composite Key).</p></div>`
+            },
+
+            'lec5': {
+                num: '05',
+                title: 'ER Model: Relationships, Cardinality & Constraints',
+                explain: `
+                    <div class="content-card">
+                        <div class="core-idea-box">
+                            <h3>💡 الفكرة الأساسية</h3>
+                            <p>المحاضرة الخامسة تغطي العلاقات ودرجاتها وأسماء الأدوار والعلاقات التكرارية وCardinality والقيود على العلاقات.</p>
+                        </div>
+                        <h3>1️⃣ Relationships - العلاقات</h3>
+                        <p>تشير إلى اتصال ذي معنى بين نوعين من الكيانات. العلاقات قد تملك صفات لكن لا تملك صفات مفتاح. الأفعال تشير إلى أسماء أنواع العلاقات.</p>
+                        <h3>2️⃣ Relationship Degree - درجة العلاقة</h3>
+                        <ul>
+                            <li><strong>Unary (Recursive):</strong> علاقة داخل نفس النوع - مثل EMPLOYEE يشرف على EMPLOYEE.</li>
+                            <li><strong>Binary:</strong> بين نوعين (الأكثر شيوعاً).</li>
+                            <li><strong>Ternary:</strong> بين 3 أنواع.</li>
+                        </ul>
+                        <div style="background:rgba(6,182,212,0.1);padding:1rem;border-radius:8px;margin:1rem 0;">
+                            <strong>Role Names:</strong> في العلاقات التكرارية يجب تحديد اسم الدور (مثل supervisor و supervisee).
+                        </div>
+                        <h3>3️⃣ Cardinality Ratios - نسب الكمية</h3>
+                        <ul>
+                            <li><strong>1:1</strong> - مثل President يحكم Country</li>
+                            <li><strong>1:N</strong> - مثل EMPLOYEE يعمل لـ DEPARTMENT</li>
+                            <li><strong>M:N</strong> - مثل EMPLOYEE يعمل في PROJECT</li>
+                        </ul>
+                        <h3>4️⃣ Participation Constraints - قيود المشاركة</h3>
+                        <ul>
+                            <li><strong>Total Participation (إلزامية):</strong> كل كيان يجب أن يشارك في العلاقة (خط مزدوج).</li>
+                            <li><strong>Partial Participation (اختيارية):</strong> بعض الكيانات قد لا تشارك (خط منفرد).</li>
+                        </ul>
+                        <h3>5️⃣ Structural Constraints (min, max)</h3>
+                        <p>تحدد الحد الأدنى والأقصى لمثيلات العلاقة التي يمكن للكيان المشاركة فيها. مثل (1,1) أو (0,N).</p>
+                    </div>`,
+                summary: `<div class="content-card"><p>المحاضرة 5 تتناول العلاقات ودرجاتها (Unary/Binary/Ternary)، Cardinality Ratios (1:1, 1:N, M:N)، قيود المشاركة (Total/Partial)، والقيود الهيكلية (min,max).</p></div>`,
+                practice: `<div class="content-card"><p>سؤال: "كل قسم يجب أن يكون له مدير واحد بالضبط، والمدير يمكنه أن يدير قسم واحد فقط" - ما هي structural constraint؟ EMPLOYEE (0,1) Manages DEPARTMENT (1,1).</p></div>`,
+                tricks: `<div class="content-card"><p>في Structural Constraints (min,max): min=0 → Partial Participation. min≥1 → Total Participation. max=1 → على هذا الطرف "1". max=N → على هذا الطرف "N".</p></div>`
+            },
+
+            'lec6': {
+                num: '06',
+                title: 'ER Design Exercises (Mail Order, University, Conference)',
+                explain: `
+                    <div class="content-card">
+                        <div class="core-idea-box">
+                            <h3>💡 الفكرة الأساسية</h3>
+                            <p>المحاضرة السادسة تتكون من تمارين تصميم ER لأنظمة مختلفة.</p>
+                        </div>
+                        <h3>📝 Exercise 1: MAIL_ORDER Database</h3>
+                        <p>شركة بريد تأخذ طلبات من عملاء عبر موظفين:</p>
+                        <ul>
+                            <li>EMPLOYEE: رقم مميز، اسم أول وأخير، Zip Code</li>
+                            <li>CUSTOMER: رقم مميز، اسم أول وأخير، Zip Code</li>
+                            <li>PART: رقم مميز، اسم، سعر، كمية في المخزون</li>
+                            <li>ORDER: رقم مميز، يحتوي كميات من أجزاء متعددة، تاريخ استلام، تاريخ شحن متوقع وفعلي</li>
+                        </ul>
+                        <h3>📝 Exercise 2: UNIVERSITY Database</h3>
+                        <p>تتبع سجلات الطلاب:</p>
+                        <ul>
+                            <li>STUDENT: اسم، رقم، SSN، عنوان، هاتف، تخصص رئيسي/فرعي، درجة علمية</li>
+                            <li>DEPARTMENT: اسم، كود، هاتف، كلية (تقدم مقررات)</li>
+                            <li>COURSE: اسم، وصف، رقم، ساعات، مستوى، قسم</li>
+                            <li>SECTION: مدرس، فصل، سنة، مقرر، رقم</li>
+                            <li>GRADE_REPORT: طالب، section، درجة حرفية، درجة رقمية</li>
+                        </ul>
+                        <h3>📝 Exercise 3: COURSES Database</h3>
+                        <p>كتب مدرسية، مقررات، ومحاضرون:</p>
+                        <ul>
+                            <li>المقرر قد لا يستخدم كتاباً (اختياري)، وبحد أقصى 5 كتب</li>
+                            <li>كل مقرر يُدرَّس من قِبل محاضر واحد بالضبط</li>
+                            <li>كل كتاب مدرسي يُستخدم في مقرر واحد فقط</li>
+                            <li>المحاضر يدرّس من 2 إلى 4 مقررات</li>
+                        </ul>
+                        <h3>📝 Exercise 4 & 5</h3>
+                        <p>Conference Review System ونظام حجوزات الطيران (Airports, Flights, Leg Instances, Reservations).</p>
+                    </div>`,
+                summary: `<div class="content-card"><p>المحاضرة 6 عبارة عن تمارين تصميم ER لأنظمة مختلفة: MAIL_ORDER، UNIVERSITY، COURSES، Conference Review، وحجوزات الطيران.</p></div>`,
+                practice: `<div class="content-card"><p>تدرّب على رسم ER Diagram لنظام UNIVERSITY مع تحديد صفات المفتاح والقيود الهيكلية لكل علاقة.</p></div>`,
+                tricks: `<div class="content-card"><p>في تمارين ER: ابدأ بتحديد الكيانات أولاً، ثم الصفات، ثم العلاقات، ثم Cardinality وParticipation.</p></div>`
+            },
+
+            'lec10': {
+                num: '09',
+                title: 'EER Model: Associative Entities, Supertypes & Subtypes',
+                explain: `
+                    <div class="content-card">
+                        <div class="core-idea-box">
+                            <h3>💡 الفكرة الأساسية</h3>
+                            <p>المحاضرة العاشرة تغطي الكيانات الترابطية (Associative Entities) والفئات الفائقة والفئات الفرعية (Supertypes & Subtypes) في نموذج EER.</p>
+                        </div>
+                        <h3>1️⃣ Associative Entities - الكيانات الترابطية</h3>
+                        <p>عندما تكون علاقة بين كيانين ذات صفات خاصة بها، يمكن تحويلها لـ Associative Entity:</p>
+                        <ul>
+                            <li>مثل: EMPLOYEE يُكمل COURSE بتاريخ معين → CERTIFICATE كـ Associative Entity</li>
+                            <li>علاقة M:N تصبح كيانان 1:M مع الكيان الترابطي</li>
+                            <li>الكيان الترابطي له طابع علاقة وطابع كيان معاً</li>
+                        </ul>
+                        <h3>2️⃣ EER Model</h3>
+                        <p>يشمل جميع مفاهيم نموذج ER + مفاهيم إضافية:</p>
+                        <ul>
+                            <li>Subclasses and Superclasses</li>
+                            <li>Specialization and Generalization</li>
+                            <li>Category (Union Type)</li>
+                        </ul>
+                        <h3>3️⃣ Subclasses & Superclasses - الفئات الفرعية والفائقة</h3>
+                        <ul>
+                            <li><strong>Superclass (Supertype):</strong> الكيان العام - مثل EMPLOYEE</li>
+                            <li><strong>Subclass (Subtype):</strong> الكيان المتخصص - مثل SECRETARY, ENGINEER</li>
+                            <li>الفئة الفرعية ترث جميع صفات الفئة الفائقة (Inheritance)</li>
+                        </ul>
+                        <h3>4️⃣ Specialization & Generalization</h3>
+                        <ul>
+                            <li><strong>Specialization:</strong> من الأعلى للأسفل - تعريف فئات فرعية من فائقة</li>
+                            <li><strong>Generalization:</strong> من الأسفل للأعلى - دمج فئات متشابهة في فائقة</li>
+                        </ul>
+                        <h3>5️⃣ Constraints on Specialization</h3>
+                        <ul>
+                            <li><strong>Disjoint (d):</strong> الكيان ينتمي لفئة فرعية واحدة فقط</li>
+                            <li><strong>Overlapping (o):</strong> الكيان يمكن أن ينتمي لأكثر من فئة فرعية</li>
+                            <li><strong>Total:</strong> كل كيان في الفائقة يجب أن ينتمي لفئة فرعية</li>
+                            <li><strong>Partial:</strong> الكيان قد لا ينتمي لأي فئة فرعية</li>
+                        </ul>
+                    </div>`,
+                summary: `<div class="content-card"><p>المحاضرة 10 تتناول Associative Entities (كيانات ترابطية) ونموذج EER مع Superclasses/Subclasses والتخصص والتعميم وقيودهما (Disjoint/Overlapping وTotal/Partial).</p></div>`,
+                practice: `<div class="content-card"><p>سؤال: متى تستخدم Associative Entity بدلاً من Relationship عادية؟ عندما تكون للعلاقة صفات خاصة بها، أو عندما تحتاج لعلاقة مع كيانات أخرى.</p></div>`,
+                tricks: `<div class="content-card"><p>تذكر: Associative Entity = علاقة M:N تحولت لكيان مع كيانين 1:M. هذا يسمح بإضافة صفات للعلاقة وإنشاء علاقات معها.</p></div>`
+            },
+
             'lec11': {
                 num: '10',
                 title: 'EER Exercises, Diagnostics & Bank EER Diagram',
